@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knicks Universe – Local NYC Media Ratings</title>
+  <meta name="description" content="Rate local NYC Knicks media personalities from 10 (GOAT) to 1 (Trash). Votes are stored via Google Forms without leaving the page." />
+
+  <style>
+    :root{
+      --knicks-blue:#006BB6;
+      --knicks-orange:#F58426;
+      --bg:#0b1020;
+      --card:#0f172a;
+      --card2:#111c34;
+      --text:#f8fafc;
+      --muted:#a7b0c0;
+      --border:rgba(148,163,184,.22);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --success:#18a34a;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(0,107,182,.25), transparent 55%),
+        radial-gradient(900px 500px at 85% 15%, rgba(245,132,38,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:18px 16px 70px;
+    }
+
+    /* Top Nav */
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0 16px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:14px;
+    }
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .nav-logo{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(135deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
+      box-shadow:0 10px 20px rgba(0,0,0,.25);
+      flex:0 0 auto;
+    }
+    .nav-title{
+      font-weight:950;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:900;
+      font-size:.9rem;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.22);
+      transition:transform .12s ease, border-color .12s ease;
+    }
+    .nav a:hover{
+      transform:translateY(-1px);
+      border-color:rgba(245,132,38,.45);
+    }
+    .nav a.active{
+      border-color:var(--knicks-orange);
+      box-shadow:0 0 0 2px rgba(245,132,38,.22);
+    }
+
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      padding:10px 0 18px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:12px;
+    }
+    .brand h1{
+      margin:0;
+      font-size:1.55rem;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.35;
+      max-width:720px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(15,23,42,.7);
+      box-shadow:var(--shadow);
+      font-weight:850;
+      font-size:.9rem;
+      white-space:nowrap;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:var(--knicks-orange);
+      box-shadow:0 0 0 4px rgba(245,132,38,.22);
+    }
+
+    /* Sort bar */
+    .sortbar{
+      margin-top:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .sortbar-label{
+      color:var(--muted);
+      font-size:.9rem;
+      font-weight:900;
+    }
+    .sortbtn{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(15,23,42,.82);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:950;
+      font-size:.85rem;
+      transition:transform .12s ease;
+    }
+    .sortbtn:hover{ transform:translateY(-1px); }
+    .sortbtn.active{
+      border-color:var(--knicks-orange);
+      box-shadow:0 0 0 2px rgba(245,132,38,.25);
+    }
+
+    /* Cards */
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .cards-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px){
+      .cards-grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(17,28,52,.98), rgba(15,23,42,.98));
+      box-shadow:var(--shadow);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      position:relative;
+    }
+
+    .imgwrap{
+      width:100%;
+      aspect-ratio: 4 / 3;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(2,6,23,.35);
+      border:1px solid rgba(148,163,184,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .imgwrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .name{
+      font-weight:950;
+      font-size:1.05rem;
+      margin:0;
+      letter-spacing:.2px;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:.88rem;
+      margin:-6px 0 0;
+      line-height:1.25;
+    }
+    .stats{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:2px;
+    }
+    .pill{
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.22);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+    }
+
+    label{
+      color:var(--muted);
+      font-weight:900;
+      font-size:.88rem;
+    }
+    select{
+      width:100%;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.25);
+      color:var(--text);
+      font-weight:800;
+      outline:none;
+    }
+    option{ color:#0b1020; }
+
+    .submit{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:0;
+      cursor:pointer;
+      font-weight:950;
+      color:#071018;
+      background:linear-gradient(90deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
+      box-shadow:0 10px 20px rgba(0,0,0,.28);
+      transition:transform .1s ease;
+    }
+    .submit:hover{ transform:translateY(-1px); }
+    .submit[disabled]{ opacity:.7; cursor:default; transform:none; }
+
+    .confirm{
+      display:none;
+      color:var(--success);
+      font-weight:950;
+      font-size:.9rem;
+      margin:0;
+    }
+    .confirm.show{ display:block; }
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:.85rem;
+      line-height:1.35;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+    }
+    code{
+      background:rgba(2,6,23,.35);
+      border:1px solid rgba(148,163,184,.18);
+      padding:2px 6px;
+      border-radius:8px;
+      color:var(--text);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="nav-logo" aria-hidden="true"></div>
+        <div class="nav-title">Knicks Universe</div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="media-ratings.html">National Media</a>
+        <a class="active" href="local-media-ratings.html">NYC Local Media</a>
+        <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
+      </div>
+    </nav>
+
+    <!-- Hidden target so Google’s response doesn’t navigate away -->
+    <iframe name="ku_hidden_submit" style="display:none;"></iframe>
+
+    <header>
+      <div class="brand">
+        <h1>Local NYC Media Ratings</h1>
+        <p>Rate local Knicks/NYC media personalities from <strong>GOAT (10)</strong> to <strong>Trash (1)</strong>. Your vote updates the live averages.</p>
+      </div>
+      <div class="badge"><span class="dot"></span> Live fan voting</div>
+    </header>
+
+    <div class="sortbar">
+      <span class="sortbar-label">Sort:</span>
+      <button class="sortbtn active" type="button" data-sort="rating">Highest Rated</button>
+      <button class="sortbtn" type="button" data-sort="votes">Most Votes</button>
+      <button class="sortbtn" type="button" data-sort="az">A–Z</button>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <footer>
+      Tip: Put headshots in <code>/images/local/</code> inside this repo.
+      Example: <code>images/local/ian_begley.jpg</code>
+    </footer>
+  </div>
+
+  <script>
+    /*****************************************************************
+     * 1) REQUIRED: Paste your Google Form "formResponse" URL here
+     *****************************************************************/
+    const FORM_ACTION_URL = "PASTE_YOUR_FORMRESPONSE_URL_HERE";
+
+    /*****************************************************************
+     * 2) REQUIRED: Update entry IDs per person (entry.##########)
+     *    - Each person should have their OWN question in the form
+     *    - The name field is the column header in your Google Sheet
+     *****************************************************************/
+    const PEOPLE = [
+      // Suggested NYC/Knicks-local names (edit as you like)
+      { name: "Ian Begley (SNY)",            img: "images/local/ian_begley.jpg",         entry: "entry.1111111111" },
+      { name: "Alan Hahn (ESPN NY)",         img: "images/local/alan_hahn.jpg",          entry: "entry.2222222222" },
+      { name: "Monica McNutt (MSG/ESPN)",    img: "images/local/monica_mcnutt.jpg",      entry: "entry.3333333333" },
+      { name: "Wally Szczerbiak (MSG)",      img: "images/local/wally_szczerbiak.jpg",  entry: "entry.4444444444" },
+      { name: "Rebecca Haarlow (MSG)",       img: "images/local/rebecca_haarlow.jpg",   entry: "entry.5555555555" },
+      { name: "Bill Pidto (MSG)",            img: "images/local/bill_pidto.jpg",        entry: "entry.6666666666" },
+      { name: "Steve Popper (Newsday)",      img: "images/local/steve_popper.jpg",      entry: "entry.7777777777" },
+      { name: "Stefan Bondy (NY Post)",      img: "images/local/stefan_bondy.jpg",      entry: "entry.8888888888" },
+      { name: "Peter Botte (NY Post)",       img: "images/local/peter_botte.jpg",       entry: "entry.9999999999" }
+    ];
+
+    const RATING_OPTIONS = [
+      "10 – GOAT 🐐",
+      "9 – Elite Take 🔥",
+      "8 – Certified 🏆",
+      "7 – Solid 🧱",
+      "6 – Decent 👍",
+      "5 – Mid 🟰",
+      "4 – Meh 😴",
+      "3 – Questionable 🤨",
+      "2 – Painful 🥴",
+      "1 – Trash 🗑️"
+    ];
+
+    /*****************************************************************
+     * 3) REQUIRED: Live data source (published sheet wide tab)
+     *****************************************************************/
+    const SHEET_ID  = "PASTE_YOUR_SHEET_ID_HERE";
+    const SHEET_GID = "PASTE_YOUR_SHEET_GID_HERE";
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=out:json`;
+
+    // Map sheet column header -> card name
+    const SHEET_HEADER_TO_CARD = {}; // filled from PEOPLE by default
+
+    // Sort state
+    let currentSortMode = "rating";
+
+    function buildMappings(){
+      PEOPLE.forEach(p => {
+        SHEET_HEADER_TO_CARD[p.name] = p.name; // exact match expected
+      });
+    }
+
+    function makeCard(person){
+      const form = document.createElement("form");
+      form.className = "card";
+      form.action = FORM_ACTION_URL;
+      form.method = "POST";
+      form.target = "ku_hidden_submit";
+      form.dataset.name = person.name;
+      form.dataset.avg = "0";
+      form.dataset.votes = "0";
+
+      form.innerHTML = `
+        <div class="imgwrap">
+          <img src="${person.img}" alt="${escapeHtml(person.name)}" loading="lazy">
+        </div>
+
+        <h3 class="name">${escapeHtml(person.name)}</h3>
+        <div class="meta">NYC / Knicks local coverage</div>
+
+        <div class="stats">
+          <div class="pill avg">Avg: <strong>—</strong></div>
+          <div class="pill votes">Votes: <strong>—</strong></div>
+        </div>
+
+        <label>Your Rating:</label>
+        <select name="${person.entry}" required>
+          <option value="" disabled selected>Select your rating</option>
+          ${RATING_OPTIONS.map(o => `<option>${o}</option>`).join("")}
+        </select>
+
+        <button class="submit" type="submit">Submit</button>
+        <p class="confirm">Thanks! Your vote was recorded.</p>
+      `;
+
+      // UX: show confirm + reset + refresh live stats
+      const btn = form.querySelector(".submit");
+      const sel = form.querySelector("select");
+      const confirm = form.querySelector(".confirm");
+
+      form.addEventListener("submit", () => {
+        if (btn) btn.disabled = true;
+        if (confirm) confirm.classList.add("show");
+
+        setTimeout(() => {
+          if (btn) btn.disabled = false;
+          if (sel) sel.selectedIndex = 0;
+        }, 1500);
+
+        setTimeout(loadFromSheetWide, 2000);
+      });
+
+      return form;
+    }
+
+    function renderCards(){
+      const grid = document.getElementById("cardsGrid");
+      grid.innerHTML = "";
+      PEOPLE.forEach(p => grid.appendChild(makeCard(p)));
+    }
+
+    function findCardByName(name){
+      const cards = document.querySelectorAll(".card");
+      for (const c of cards){
+        if ((c.dataset.name || "").trim() === name) return c;
+      }
+      return null;
+    }
+
+    function setAvgOnCard(name, avg){
+      const card = findCardByName(name);
+      if (!card) return;
+      card.dataset.avg = String(avg);
+
+      const avgPill = card.querySelector(".pill.avg");
+      if (!avgPill) return;
+      avgPill.innerHTML = `Avg: <strong>${avg.toFixed(1)}</strong>`;
+    }
+
+    function setVotesOnCard(name, votes){
+      const card = findCardByName(name);
+      if (!card) return;
+      card.dataset.votes = String(votes);
+
+      const votesPill = card.querySelector(".pill.votes");
+      if (!votesPill) return;
+      votesPill.innerHTML = `Votes: <strong>${votes}</strong>`;
+    }
+
+    function normalizeHeader(raw){
+      if (!raw) return "";
+      return String(raw).trim().replace(/\s+/g, " ");
+    }
+
+    function getNameFromCard(card){
+      return (card.dataset.name || "").trim();
+    }
+
+    function sortCards(mode){
+      currentSortMode = mode;
+      const grid = document.getElementById("cardsGrid");
+      if (!grid) return;
+
+      const cards = Array.from(grid.querySelectorAll(".card"));
+      cards.sort((a,b) => {
+        const aAvg = parseFloat(a.dataset.avg || "0");
+        const bAvg = parseFloat(b.dataset.avg || "0");
+        const aVotes = parseInt(a.dataset.votes || "0", 10);
+        const bVotes = parseInt(b.dataset.votes || "0", 10);
+
+        if (mode === "votes"){
+          if (bVotes !== aVotes) return bVotes - aVotes;
+          return bAvg - aAvg;
+        }
+        if (mode === "az"){
+          return getNameFromCard(a).localeCompare(getNameFromCard(b));
+        }
+        // rating: avg desc, then votes desc, then az
+        if (bAvg !== aAvg) return bAvg - aAvg;
+        if (bVotes !== aVotes) return bVotes - aVotes;
+        return getNameFromCard(a).localeCompare(getNameFromCard(b));
+      });
+
+      cards.forEach(c => grid.appendChild(c));
+    }
+
+    function initSortButtons(){
+      const btns = document.querySelectorAll(".sortbtn");
+      btns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          btns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          sortCards(btn.dataset.sort);
+        });
+      });
+    }
+
+    async function loadFromSheetWide(){
+      try{
+        const resp = await fetch(SHEET_URL);
+        const text = await resp.text();
+
+        const start = text.indexOf("{");
+        const end = text.lastIndexOf("}");
+        if (start === -1 || end === -1) throw new Error("Unexpected sheet response");
+
+        const data = JSON.parse(text.substring(start, end + 1));
+        const cols = data.table.cols;
+        const rows = data.table.rows;
+
+        const sums = {};
+        const counts = {};
+
+        rows.forEach(row => {
+          const cells = row.c || [];
+          for (let i = 0; i < cols.length; i++){
+            const meta = cols[i];
+            if (!meta) continue;
+
+            const header = normalizeHeader(meta.label);
+            if (!header) continue;
+
+            const cardName = SHEET_HEADER_TO_CARD[header];
+            if (!cardName) continue;
+
+            const cell = cells[i];
+            if (!cell || cell.v == null) continue;
+
+            const rawVal = String(cell.v);
+            const numVal = Number(rawVal.replace(/[^\d.]/g, ""));
+            if (isNaN(numVal)) continue;
+
+            if (!sums[cardName]) { sums[cardName] = 0; counts[cardName] = 0; }
+            sums[cardName] += numVal;
+            counts[cardName] += 1;
+          }
+        });
+
+        Object.keys(sums).forEach(name => {
+          const avg = sums[name] / counts[name];
+          setAvgOnCard(name, avg);
+          setVotesOnCard(name, counts[name]);
+        });
+
+        sortCards(currentSortMode);
+      } catch(err){
+        console.error("KnicksUniverse: error loading local media stats", err);
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // Init
+    document.addEventListener("DOMContentLoaded", () => {
+      buildMappings();
+      renderCards();
+      initSortButtons();
+      loadFromSheetWide();
+    });
+
+    // Optional: auto-refresh every 30 seconds
+    setInterval(loadFromSheetWide, 30000);
+  </script>
+</body>
+</html>
