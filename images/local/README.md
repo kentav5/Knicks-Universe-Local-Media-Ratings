@@ -1,0 +1,1 @@
+Create images/local folder
