@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Knicks Universe – Local NYC Media Ratings</title>
-  <meta name="description" content="Rate local NYC media personalities covering the Knicks. Votes are stored via Google Forms without leaving the page; live averages update automatically." />
+  <meta name="description" content="Fan voting — rate local NYC Knicks media personalities 10 (GOAT) to 1 (Trash). Votes stored via Google Forms without leaving the page." />
 
   <style>
     :root{
@@ -17,7 +17,7 @@
       --muted:#a7b0c0;
       --border:rgba(148,163,184,.22);
       --shadow:0 10px 30px rgba(0,0,0,.35);
-      --success:#22c55e;
+      --success:#18a957;
     }
 
     *{ box-sizing:border-box; }
@@ -34,17 +34,17 @@
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:20px 16px 70px;
+      padding:18px 16px 70px;
     }
 
-    /* Top Nav (Knicks Universe) */
+    /* Top Nav (match your other pages) */
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
       padding:10px 0 16px;
-      border-bottom:1px solid rgba(148,163,184,.22);
+      border-bottom:1px solid var(--border);
       margin-bottom:14px;
     }
     .nav-left{
@@ -79,7 +79,7 @@
       font-size:.9rem;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.22);
+      border:1px solid var(--border);
       background:rgba(2,6,23,.22);
       transition:transform .12s ease, border-color .12s ease;
     }
@@ -100,9 +100,8 @@
       flex-wrap:wrap;
       padding:10px 0 18px;
       border-bottom:1px solid var(--border);
-      margin-bottom:12px;
+      margin-bottom:18px;
     }
-
     .brand{
       display:flex;
       flex-direction:column;
@@ -110,7 +109,7 @@
     }
     .brand h1{
       margin:0;
-      font-size:1.55rem;
+      font-size:1.6rem;
       letter-spacing:.2px;
     }
     .brand p{
@@ -118,9 +117,8 @@
       color:var(--muted);
       font-size:.95rem;
       line-height:1.35;
-      max-width:820px;
+      max-width:760px;
     }
-
     .badge{
       display:inline-flex;
       align-items:center;
@@ -147,7 +145,6 @@
       flex-wrap:wrap;
       gap:10px;
       align-items:center;
-      justify-content:flex-start;
     }
     .sortbar-label{
       color:var(--muted);
@@ -171,7 +168,7 @@
       box-shadow:0 0 0 2px rgba(245,132,38,.25);
     }
 
-    /* Grid + cards */
+    /* Cards */
     .cards-grid{
       display:grid;
       grid-template-columns:repeat(3, minmax(0, 1fr));
@@ -190,129 +187,133 @@
       border-radius:18px;
       background:linear-gradient(180deg, rgba(17,28,52,.98), rgba(15,23,42,.98));
       box-shadow:var(--shadow);
-      overflow:hidden;
+      padding:14px;
       display:flex;
       flex-direction:column;
-      min-height: 520px;
+      gap:10px;
+      position:relative;
+      overflow:hidden;
     }
 
     .imgwrap{
-      background:rgba(2,6,23,.30);
-      padding:10px;
-    }
-    .img{
-      width:100%;
-      height:210px;
-      object-fit:cover;
       border-radius:14px;
-      display:block;
-      background:rgba(255,255,255,.04);
-    }
-
-    .content{
-      padding:14px 14px 16px;
+      background:rgba(2,6,23,.28);
+      border:1px solid rgba(148,163,184,.14);
+      overflow:hidden;
+      aspect-ratio: 4 / 3;
       display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
+      align-items:center;
+      justify-content:center;
+    }
+    .imgwrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .placeholder{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:rgba(248,250,252,.85);
+      font-weight:900;
+      letter-spacing:.3px;
+      background:
+        radial-gradient(500px 220px at 20% 20%, rgba(0,107,182,.25), transparent 55%),
+        radial-gradient(500px 220px at 80% 30%, rgba(245,132,38,.18), transparent 55%),
+        rgba(2,6,23,.22);
     }
 
     .name{
-      font-size:1.05rem;
+      margin:2px 0 0;
       font-weight:950;
-      margin:0;
-      line-height:1.15;
+      font-size:1.02rem;
+      letter-spacing:.2px;
     }
     .meta{
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.25;
-      margin:0;
-    }
-
-    .stats{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
-      margin-top:2px;
-    }
-    .pill{
-      display:inline-flex;
+      gap:10px;
       align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.20);
-      background:rgba(2,6,23,.25);
-      font-weight:900;
-      font-size:.85rem;
-      color:var(--text);
-    }
-    .pill span{
       color:var(--muted);
       font-weight:800;
+      font-size:.9rem;
+      margin-top:-2px;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(2,6,23,.22);
+      white-space:nowrap;
     }
 
     label{
-      display:block;
+      color:var(--muted);
       font-weight:900;
-      font-size:.9rem;
-      margin-top:6px;
-      color:var(--text);
+      font-size:.88rem;
     }
 
     select{
       width:100%;
-      margin-top:6px;
-      padding:10px 12px;
       border-radius:12px;
-      border:1px solid rgba(148,163,184,.25);
-      background:rgba(2,6,23,.30);
+      padding:10px 12px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.28);
       color:var(--text);
-      font-weight:800;
+      font-weight:850;
       outline:none;
     }
 
     .btn{
-      margin-top:10px;
-      width:100%;
-      padding:11px 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
       border-radius:14px;
-      border:0;
-      cursor:pointer;
       font-weight:950;
+      text-decoration:none;
+      border:1px solid rgba(148,163,184,.18);
+      color:var(--text);
+      background:rgba(2,6,23,.25);
+      cursor:pointer;
+      transition:transform .12s ease, border-color .12s ease, opacity .12s ease;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(245,132,38,.45);
+    }
+    .btn.primary{
+      border:0;
       color:#071018;
       background:linear-gradient(90deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
-      transition:transform .10s ease, opacity .10s ease;
+      box-shadow:0 10px 20px rgba(0,0,0,.28);
     }
-    .btn:hover{ transform:translateY(-1px); }
-    .btn:disabled{ opacity:.65; cursor:default; transform:none; }
+    .btn[disabled]{ opacity:.6; cursor:default; transform:none; }
 
     .confirm{
       display:none;
-      margin-top:10px;
-      font-weight:900;
-      color:var(--success);
+      margin-top:4px;
+      color:rgba(24,169,87,.95);
+      font-weight:950;
       font-size:.9rem;
     }
     .confirm.show{ display:block; }
 
     footer{
       margin-top:18px;
-      border-top:1px solid var(--border);
-      padding-top:14px;
       color:var(--muted);
       font-size:.85rem;
       line-height:1.35;
+      padding-top:14px;
+      border-top:1px solid var(--border);
     }
-    code{
-      background:rgba(2,6,23,.35);
-      border:1px solid rgba(148,163,184,.18);
-      padding:2px 6px;
-      border-radius:8px;
-      color:var(--text);
-    }
+
+    /* small helper */
+    .tiny{ font-size:.82rem; color:var(--muted); margin-top:6px; }
   </style>
 </head>
 
@@ -325,558 +326,362 @@
         <div class="nav-title">Knicks Universe</div>
       </div>
       <div class="nav-links">
-        <!-- Adjust these links if needed -->
         <a href="https://kentav5.github.io/Knicks-Universe-Media-Ratings/media-ratings.html">National Media</a>
-        <a class="active" href="local-media-ratings.html">Local NYC Media</a>
+        <a class="active" href="#">Local NYC Media</a>
         <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
       </div>
     </nav>
 
+    <!-- Hidden target so Google’s response doesn’t navigate away -->
+    <iframe name="ku_hidden_submit" style="display:none;"></iframe>
+
     <header>
       <div class="brand">
-        <h1>Local NYC Media Ratings</h1>
-        <p>
-          Rate local NYC media personalities from <strong>GOAT (10)</strong> to <strong>Trash (1)</strong>.
-          Your vote is recorded instantly without leaving the page. Live averages refresh automatically.
-        </p>
+        <h1>Knicks Universe – Local NYC Media Ratings</h1>
+        <p>Rate local NYC Knicks media personalities from <strong>GOAT (10)</strong> to <strong>Trash (1)</strong>. Your vote updates the live averages.</p>
 
-        <div class="sortbar" aria-label="Sort controls">
+        <div class="sortbar">
           <span class="sortbar-label">Sort:</span>
           <button class="sortbtn active" type="button" data-sort="rating">Highest Rated</button>
           <button class="sortbtn" type="button" data-sort="votes">Most Votes</button>
           <button class="sortbtn" type="button" data-sort="az">A–Z</button>
+        </div>
+
+        <div class="tiny">
+          Note: Live averages require your Google Sheet to be published (View-only). If not published yet, cards will show “—”.
         </div>
       </div>
 
       <div class="badge"><span class="dot"></span> Live fan voting</div>
     </header>
 
-    <!-- Hidden target so Google’s response doesn’t navigate away -->
-    <iframe name="ku_hidden_submit_local" style="display:none;"></iframe>
-
     <div class="cards-grid" id="cardsGrid">
 
-      <!-- TEMPLATE NOTES:
-        - image paths assume you upload files into: /images/local/
-        - you can rename paths but keep them consistent
-      -->
-
-      <!-- 1) Ian Begley -->
-      <form class="card ku-card"
-            data-name="Ian Begley"
-            action="REPLACE_FORM_ACTION_URL"
-            method="POST"
-            target="ku_hidden_submit_local">
+      <!-- Ian Begley -->
+      <form class="card" data-name="Ian Begley" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
         <div class="imgwrap">
-          <img class="img" src="images/local/ian_begley.jpg" alt="Ian Begley">
+          <div class="placeholder">IAN BEGLEY</div>
         </div>
-        <div class="content">
-          <h2 class="name">Ian Begley</h2>
-          <p class="meta">Local NYC / Knicks coverage</p>
-
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-
-          <!-- Hidden personality field -->
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Ian Begley">
-
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option>
-            <option value="9">9 – Elite 🎙️</option>
-            <option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option>
-            <option value="6">6 – Decent 👍</option>
-            <option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option>
-            <option value="3">3 – Reaching 🤨</option>
-            <option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+        <div class="name">Ian Begley</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="begley">Your rating:</label>
+        <select id="begley" name="entry.815230096" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option>
+          <option>9 – Elite ⭐️</option>
+          <option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option>
+          <option>6 – Solid 🔄</option>
+          <option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option>
+          <option>3 – Poor 🪑</option>
+          <option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Ian Begley was recorded.</div>
       </form>
 
-      <!-- 2) Bill Pidto -->
-      <form class="card ku-card" data-name="Bill Pidto"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/bill_pidto.jpg" alt="Bill Pidto"></div>
-        <div class="content">
-          <h2 class="name">Bill Pidto</h2>
-          <p class="meta">MSG / Knicks TV</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Bill Pidto">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Bill Pidto -->
+      <form class="card" data-name="Bill Pidto" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">BILL PIDTO</div></div>
+        <div class="name">Bill Pidto</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="pidto">Your rating:</label>
+        <select id="pidto" name="entry.1467333831" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Bill Pidto was recorded.</div>
       </form>
 
-      <!-- 3) Wally Szczerbiak -->
-      <form class="card ku-card" data-name="Wally Szczerbiak"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/wally_szczerbiak.jpg" alt="Wally Szczerbiak"></div>
-        <div class="content">
-          <h2 class="name">Wally Szczerbiak</h2>
-          <p class="meta">MSG / Knicks TV</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Wally Szczerbiak">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Wally Szczerbiak -->
+      <form class="card" data-name="Wally Szczerbiak" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">WALLY SZCZERBIAK</div></div>
+        <div class="name">Wally Szczerbiak</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="wally">Your rating:</label>
+        <select id="wally" name="entry.2145553835" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Wally Szczerbiak was recorded.</div>
       </form>
 
-      <!-- 4) Alan Hahn -->
-      <form class="card ku-card" data-name="Alan Hahn"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/alan_hahn.jpg" alt="Alan Hahn"></div>
-        <div class="content">
-          <h2 class="name">Alan Hahn</h2>
-          <p class="meta">NYC radio / Knicks</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Alan Hahn">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Alana Hahn -->
+      <form class="card" data-name="Alana Hahn" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">ALANA HAHN</div></div>
+        <div class="name">Alana Hahn</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="alana">Your rating:</label>
+        <select id="alana" name="entry.228026217" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Alana Hahn was recorded.</div>
       </form>
 
-      <!-- 5) Monica McNutt -->
-      <form class="card ku-card" data-name="Monica McNutt"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/monica_mcnutt.jpg" alt="Monica McNutt"></div>
-        <div class="content">
-          <h2 class="name">Monica McNutt</h2>
-          <p class="meta">NYC / Knicks coverage</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Monica McNutt">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Monica McNutt -->
+      <form class="card" data-name="Monica McNutt" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">MONICA McNUTT</div></div>
+        <div class="name">Monica McNutt</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="monica">Your rating:</label>
+        <select id="monica" name="entry.1316754163" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Monica McNutt was recorded.</div>
       </form>
 
-      <!-- 6) Stefan Bondy -->
-      <form class="card ku-card" data-name="Stefan Bondy"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/stefan_bondy.jpg" alt="Stefan Bondy"></div>
-        <div class="content">
-          <h2 class="name">Stefan Bondy</h2>
-          <p class="meta">NYC beat / Knicks</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Stefan Bondy">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Stefan Bondy -->
+      <form class="card" data-name="Stefan Bondy" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">STEFAN BONDY</div></div>
+        <div class="name">Stefan Bondy</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="bondy">Your rating:</label>
+        <select id="bondy" name="entry.1387740233" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Stefan Bondy was recorded.</div>
       </form>
 
-      <!-- 7) Peter Botte -->
-      <form class="card ku-card" data-name="Peter Botte"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/peter_botte.jpg" alt="Peter Botte"></div>
-        <div class="content">
-          <h2 class="name">Peter Botte</h2>
-          <p class="meta">NYC beat / Knicks</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Peter Botte">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Peter Botte -->
+      <form class="card" data-name="Peter Botte" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">PETER BOTTE</div></div>
+        <div class="name">Peter Botte</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="botte">Your rating:</label>
+        <select id="botte" name="entry.1463574973" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Peter Botte was recorded.</div>
       </form>
 
-      <!-- 8) Kristian Winfield -->
-      <form class="card ku-card" data-name="Kristian Winfield"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/kristian_winfield.jpg" alt="Kristian Winfield"></div>
-        <div class="content">
-          <h2 class="name">Kristian Winfield</h2>
-          <p class="meta">NYC beat / Knicks</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Kristian Winfield">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Kristian Winfield -->
+      <form class="card" data-name="Kristian Winfield" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">KRISTIAN WINFIELD</div></div>
+        <div class="name">Kristian Winfield</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="winfield">Your rating:</label>
+        <select id="winfield" name="entry.1036744431" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Kristian Winfield was recorded.</div>
       </form>
 
-      <!-- 9) Steve Popper -->
-      <form class="card ku-card" data-name="Steve Popper"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/steve_popper.jpg" alt="Steve Popper"></div>
-        <div class="content">
-          <h2 class="name">Steve Popper</h2>
-          <p class="meta">NYC beat / Knicks</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Steve Popper">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Steve Popper -->
+      <form class="card" data-name="Steve Popper" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">STEVE POPPER</div></div>
+        <div class="name">Steve Popper</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="popper">Your rating:</label>
+        <select id="popper" name="entry.350331188" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Steve Popper was recorded.</div>
       </form>
 
-      <!-- 10) James Edwards III -->
-      <form class="card ku-card" data-name="James Edwards III"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/james_edwards_iii.jpg" alt="James Edwards III"></div>
-        <div class="content">
-          <h2 class="name">James Edwards III</h2>
-          <p class="meta">The Athletic / NYC</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="James Edwards III">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- James Edwards III -->
+      <form class="card" data-name="James Edwards III" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">JAMES EDWARDS III</div></div>
+        <div class="name">James Edwards III</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
+        <label for="edwards">Your rating:</label>
+        <select id="edwards" name="entry.48419644" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for James Edwards III was recorded.</div>
       </form>
 
-      <!-- 11) Mike Lupica -->
-      <form class="card ku-card" data-name="Mike Lupica"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/mike_lupica.jpg" alt="Mike Lupica"></div>
-        <div class="content">
-          <h2 class="name">Mike Lupica</h2>
-          <p class="meta">NYC sports / commentary</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Mike Lupica">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
+      <!-- Mike Lupica -->
+      <form class="card" data-name="Mike Lupica" data-avg="0" data-votes="0"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
+        method="POST" target="ku_hidden_submit">
+        <div class="imgwrap"><div class="placeholder">MIKE LUPICA</div></div>
+        <div class="name">Mike Lupica</div>
+        <div class="meta">
+          <span class="pill avg">Avg: <strong>—</strong></span>
+          <span class="pill votes">Votes: <strong>—</strong></span>
         </div>
-      </form>
-
-      <!-- 12) Brandon Tierney -->
-      <form class="card ku-card" data-name="Brandon Tierney"
-            action="REPLACE_FORM_ACTION_URL" method="POST" target="ku_hidden_submit_local">
-        <div class="imgwrap"><img class="img" src="images/local/brandon_tierney.jpg" alt="Brandon Tierney"></div>
-        <div class="content">
-          <h2 class="name">Brandon Tierney</h2>
-          <p class="meta">WFAN / NYC radio</p>
-          <div class="stats">
-            <div class="pill"><span>Avg</span> <strong class="avg">—</strong></div>
-            <div class="pill"><span>Votes</span> <strong class="votes">—</strong></div>
-          </div>
-          <input type="hidden" name="REPLACE_ENTRY_PERSON" value="Brandon Tierney">
-          <label>Your Rating</label>
-          <select name="REPLACE_ENTRY_RATING" required>
-            <option value="" disabled selected>Select your rating</option>
-            <option value="10">10 – GOAT 🐐</option><option value="9">9 – Elite 🎙️</option><option value="8">8 – Great Take 🔥</option>
-            <option value="7">7 – Solid 🗽</option><option value="6">6 – Decent 👍</option><option value="5">5 – Mid 🟰</option>
-            <option value="4">4 – Weak Take 💤</option><option value="3">3 – Reaching 🤨</option><option value="2">2 – Clickbait 🧲</option>
-            <option value="1">1 – Trash 🗑️</option>
-          </select>
-          <button class="btn" type="submit">Submit Vote</button>
-          <div class="confirm">Thanks! Your vote was recorded.</div>
-        </div>
+        <label for="lupica">Your rating:</label>
+        <select id="lupica" name="entry.594500527" required>
+          <option value="" disabled selected>Select your rating</option>
+          <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
+          <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
+          <option>4 – Below Average 💤</option><option>3 – Poor 🪑</option><option>2 – Bad 🌴</option>
+          <option>1 – Trash 🗑️</option>
+        </select>
+        <button class="btn primary" type="submit">Submit Vote</button>
+        <div class="confirm">Thanks! Your vote for Mike Lupica was recorded.</div>
       </form>
 
     </div>
 
     <footer>
-      Tip: Upload your headshots into <code>/images/local/</code> in this repo so the images load consistently.
-      Live averages use your published Google Sheet CSV, so don’t rename column headers after you launch.
+      © KnicksUniverse.com — voting is anonymous. Results are aggregated in a Google Sheet connected to your Google Form.
     </footer>
   </div>
 
   <script>
-    /************************************************************
-     * ✅ STEP 1 — PASTE YOUR LINKS/ENTRY IDS HERE
-     ************************************************************/
-    const FORM_ACTION_URL = "REPLACE_FORM_ACTION_URL";
-    const ENTRY_PERSON = "REPLACE_ENTRY_PERSON"; // example: entry.756421029
-    const ENTRY_RATING = "REPLACE_ENTRY_RATING"; // example: entry.1446795869
+    // ========= CONFIG: You MUST update these two =========
+    // Open your response spreadsheet, copy the Sheet ID from the URL:
+    // https://docs.google.com/spreadsheets/d/<SHEET_ID>/edit...
+    //
+    // Then get the gid for the "Form Responses 1" tab (from URL "gid=12345").
+    const SHEET_ID  = "REPLACE_WITH_YOUR_SHEET_ID";
+    const SHEET_GID = "REPLACE_WITH_YOUR_FORM_RESPONSES_GID";
+    // ====================================================
 
-    // Published CSV (like your National Media page)
-    const SHEET_CSV_URL = "REPLACE_SHEET_CSV_URL";
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=out:json`;
 
-    /************************************************************
-     * ✅ STEP 2 — APPLY FORM SETTINGS TO EVERY CARD
-     ************************************************************/
-    (function initForms(){
-      document.querySelectorAll(".ku-card").forEach(form => {
-        form.action = FORM_ACTION_URL;
+    // We compute per-person: avg score + votes count (same logic as your Player page)
+    const IGNORE_HEADERS = new Set(["Timestamp"]);
 
-        const hidden = form.querySelector('input[type="hidden"]');
-        if (hidden) hidden.name = ENTRY_PERSON;
-
-        const sel = form.querySelector("select");
-        if (sel) sel.name = ENTRY_RATING;
-      });
-    })();
-
-    /************************************************************
-     * ✅ STEP 3 — UX: CONFIRMATION, DISABLE BUTTON, REFRESH DATA
-     ************************************************************/
-    (function wireSubmitUX(){
-      document.querySelectorAll(".ku-card").forEach(form => {
-        const btn = form.querySelector(".btn");
-        const confirm = form.querySelector(".confirm");
-        const sel = form.querySelector("select");
-
-        form.addEventListener("submit", () => {
-          if (btn) btn.disabled = true;
-          if (confirm) confirm.classList.add("show");
-
-          setTimeout(() => {
-            if (btn) btn.disabled = false;
-            if (sel) sel.selectedIndex = 0;
-          }, 1500);
-
-          // refresh averages after vote
-          setTimeout(loadFromSheetCSV, 2000);
-        });
-      });
-    })();
-
-    /************************************************************
-     * ✅ STEP 4 — LIVE AVG + VOTES FROM CSV
-     * Expected columns in Sheet:
-     *  - "Media Personality" (or similar)
-     *  - "Rating" (1..10)
-     ************************************************************/
-    function parseCSV(text){
-      // Handles commas inside quotes
-      const rows = [];
-      let row = [], cur = "", inQuotes = false;
-
-      for (let i=0; i<text.length; i++){
-        const c = text[i];
-        const next = text[i+1];
-
-        if (c === '"' && inQuotes && next === '"') { cur += '"'; i++; continue; }
-        if (c === '"') { inQuotes = !inQuotes; continue; }
-
-        if (c === "," && !inQuotes) { row.push(cur); cur = ""; continue; }
-        if ((c === "\n" || c === "\r") && !inQuotes) {
-          if (cur.length || row.length) { row.push(cur); rows.push(row); }
-          row = []; cur = "";
-          continue;
-        }
-        cur += c;
-      }
-      if (cur.length || row.length) { row.push(cur); rows.push(row); }
-      return rows.filter(r => r.some(x => String(x).trim() !== ""));
+    function normalizeHeader(raw){
+      if (!raw) return "";
+      let h = String(raw).trim();
+      h = h.replace(/\s+/g, " ");
+      return h;
     }
 
-    function getCardByPerson(person){
-      const cards = document.querySelectorAll(".ku-card");
-      for (const c of cards){
-        const nm = c.getAttribute("data-name") || "";
-        if (nm.trim() === person.trim()) return c;
-      }
-      return null;
+    function parseGviz(text){
+      const start = text.indexOf("{");
+      const end = text.lastIndexOf("}");
+      if (start === -1 || end === -1) throw new Error("Unexpected sheet response format");
+      return JSON.parse(text.substring(start, end + 1));
     }
 
-    function setCardStats(person, avg, votes){
-      const card = getCardByPerson(person);
-      if (!card) return;
+    function getNameFromCard(card){
+      return (card.dataset.name || "").trim();
+    }
 
-      const avgEl = card.querySelector(".avg");
-      const votesEl = card.querySelector(".votes");
-
+    function setAvgAndVotesOnCard(card, avg, votes){
       card.dataset.avg = String(avg || 0);
       card.dataset.votes = String(votes || 0);
 
-      if (avgEl) avgEl.textContent = votes ? avg.toFixed(1) : "—";
-      if (votesEl) votesEl.textContent = votes ? String(votes) : "—";
+      const avgPill = card.querySelector(".pill.avg strong");
+      const votesPill = card.querySelector(".pill.votes strong");
+      if (avgPill) avgPill.textContent = (votes ? avg.toFixed(1) : "—");
+      if (votesPill) votesPill.textContent = (votes ? String(votes) : "—");
     }
 
-    async function loadFromSheetCSV(){
-      if (!SHEET_CSV_URL || SHEET_CSV_URL.includes("REPLACE_")) return;
-
-      try{
-        const resp = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-        const text = await resp.text();
-        const rows = parseCSV(text);
-        if (rows.length < 2) return;
-
-        const headers = rows[0].map(h => String(h).trim());
-        // Try to auto-detect common column names
-        const idxPerson =
-          headers.findIndex(h => /media personality|personality|name/i.test(h));
-        const idxRating =
-          headers.findIndex(h => /rating|score/i.test(h));
-
-        if (idxPerson === -1 || idxRating === -1){
-          console.warn("CSV headers not recognized. Found:", headers);
-          return;
-        }
-
-        const sums = {};
-        const counts = {};
-
-        for (let i=1; i<rows.length; i++){
-          const r = rows[i];
-          const person = (r[idxPerson] || "").trim();
-          const ratingRaw = (r[idxRating] || "").trim();
-
-          if (!person) continue;
-          const rating = Number(String(ratingRaw).replace(/[^\d.]/g,""));
-          if (!Number.isFinite(rating)) continue;
-
-          if (!sums[person]) { sums[person]=0; counts[person]=0; }
-          sums[person] += rating;
-          counts[person] += 1;
-        }
-
-        // Update all known cards (use their data-name key)
-        document.querySelectorAll(".ku-card").forEach(card => {
-          const person = card.getAttribute("data-name") || "";
-          const votes = counts[person] || 0;
-          const avg = votes ? (sums[person] / votes) : 0;
-          setCardStats(person, avg, votes);
-        });
-
-        // Apply current sort after refresh
-        sortCards(currentSortMode);
-      } catch(err){
-        console.error("KnicksUniverse Local: error loading CSV", err);
-      }
-    }
-
-    /************************************************************
-     * ✅ STEP 5 — SORTING (rating desc, then votes desc)
-     ************************************************************/
+    // Sorting
     let currentSortMode = "rating";
-
-    function getName(card){
-      const h = card.querySelector(".name");
-      return h ? h.textContent.trim() : (card.getAttribute("data-name") || "");
-    }
-
     function sortCards(mode){
       currentSortMode = mode;
       const grid = document.getElementById("cardsGrid");
       if (!grid) return;
 
-      const cards = Array.from(grid.querySelectorAll(".ku-card"));
-
-      cards.sort((a, b) => {
+      const cards = Array.from(grid.querySelectorAll(".card"));
+      cards.sort((a,b)=>{
         const aAvg = parseFloat(a.dataset.avg || "0");
         const bAvg = parseFloat(b.dataset.avg || "0");
         const aVotes = parseInt(a.dataset.votes || "0", 10);
         const bVotes = parseInt(b.dataset.votes || "0", 10);
 
-        if (mode === "votes") {
+        if (mode === "votes"){
           if (bVotes !== aVotes) return bVotes - aVotes;
           return bAvg - aAvg;
         }
-
-        if (mode === "az") {
-          return getName(a).localeCompare(getName(b));
+        if (mode === "az"){
+          return getNameFromCard(a).localeCompare(getNameFromCard(b));
         }
-
-        // mode === "rating"
+        // rating
         if (bAvg !== aAvg) return bAvg - aAvg;
         if (bVotes !== aVotes) return bVotes - aVotes;
-        return getName(a).localeCompare(getName(b));
+        return getNameFromCard(a).localeCompare(getNameFromCard(b));
       });
 
       cards.forEach(c => grid.appendChild(c));
@@ -884,25 +689,105 @@
 
     function initSortButtons(){
       const btns = document.querySelectorAll(".sortbtn");
-      btns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          btns.forEach(b => b.classList.remove("active"));
+      btns.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          btns.forEach(b=>b.classList.remove("active"));
           btn.classList.add("active");
           sortCards(btn.dataset.sort);
         });
       });
     }
 
-    /************************************************************
-     * ✅ BOOT
-     ************************************************************/
-    document.addEventListener("DOMContentLoaded", () => {
+    // Load + compute
+    async function loadLocalMediaFromSheet(){
+      // If config not updated, do nothing (page still works for voting).
+      if (!SHEET_ID || SHEET_ID.includes("REPLACE_") || !SHEET_GID || String(SHEET_GID).includes("REPLACE_")){
+        return;
+      }
+
+      try{
+        const resp = await fetch(SHEET_URL);
+        const text = await resp.text();
+        const data = parseGviz(text);
+
+        const cols = data.table.cols || [];
+        const rows = data.table.rows || [];
+
+        const sums = {};
+        const counts = {};
+
+        rows.forEach(row=>{
+          const cells = row.c || [];
+          for (let colIndex = 0; colIndex < cols.length; colIndex++){
+            const colMeta = cols[colIndex];
+            if (!colMeta) continue;
+
+            const header = normalizeHeader(colMeta.label);
+            if (!header || IGNORE_HEADERS.has(header)) continue;
+
+            // Only process columns that match one of our card names
+            const cardName = header; // header is the question title in the Form
+            const card = document.querySelector(`.card[data-name="${CSS.escape(cardName)}"]`);
+            if (!card) continue;
+
+            const cell = cells[colIndex];
+            if (!cell || cell.v == null) continue;
+
+            const rawVal = String(cell.v);
+            // Extract number from "10 – GOAT 🐐"
+            const numVal = Number(rawVal.replace(/[^\d.]/g, ""));
+            if (isNaN(numVal)) continue;
+
+            if (!sums[cardName]) { sums[cardName] = 0; counts[cardName] = 0; }
+            sums[cardName] += numVal;
+            counts[cardName] += 1;
+          }
+        });
+
+        // Apply to cards
+        const cards = Array.from(document.querySelectorAll(".card"));
+        cards.forEach(card=>{
+          const name = getNameFromCard(card);
+          const votes = counts[name] || 0;
+          const avg = votes ? (sums[name] / votes) : 0;
+          setAvgAndVotesOnCard(card, avg, votes);
+        });
+
+        sortCards(currentSortMode);
+      } catch(err){
+        console.error("Local Media: error loading sheet averages", err);
+      }
+    }
+
+    // Inline confirmation (no page navigation)
+    (function(){
+      document.querySelectorAll(".card").forEach(form=>{
+        const select = form.querySelector("select");
+        const button = form.querySelector("button[type='submit']");
+        const confirm = form.querySelector(".confirm");
+
+        form.addEventListener("submit", ()=>{
+          if (button) button.disabled = true;
+          if (confirm) confirm.classList.add("show");
+
+          setTimeout(()=>{
+            if (button) button.disabled = false;
+            if (select) select.selectedIndex = 0;
+          }, 1400);
+
+          // refresh numbers shortly after submit
+          setTimeout(loadLocalMediaFromSheet, 2000);
+        });
+      });
+    })();
+
+    document.addEventListener("DOMContentLoaded", ()=>{
       initSortButtons();
-      loadFromSheetCSV();
-      // refresh periodically
-      setInterval(loadFromSheetCSV, 30000);
+      loadLocalMediaFromSheet();
     });
+
+    // Optional: auto-refresh every 30 seconds like your national page
+    setInterval(loadLocalMediaFromSheet, 30000);
   </script>
 </body>
 </html>
-
