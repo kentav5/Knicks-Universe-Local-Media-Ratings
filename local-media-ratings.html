@@ -619,12 +619,12 @@
     // Open your response spreadsheet, copy the Sheet ID from the URL:
     // https://docs.google.com/spreadsheets/d/<SHEET_ID>/edit...
     //
-    // Then get the gid for the "Form Responses 1" tab (from URL "gid=12345").
-    const SHEET_ID  = "REPLACE_WITH_YOUR_SHEET_ID";
-    const SHEET_GID = "REPLACE_WITH_YOUR_FORM_RESPONSES_GID";
+    // Then get the gid for the "Form Responses 1" tab (from URL "gid=364891836").
+    const SHEET_ID  = "1JRgHQxwidT6QYLUgRmx6U-FfaWVeGQQb7LngkZYLM4M";
+    const SHEET_GID = "364891836";
     // ====================================================
 
-    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=out:json`;
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${364891836}/gviz/tq?gid=${SHEET_GID}&tqx=out:json`;
 
     // We compute per-person: avg score + votes count (same logic as your Player page)
     const IGNORE_HEADERS = new Set(["Timestamp"]);
