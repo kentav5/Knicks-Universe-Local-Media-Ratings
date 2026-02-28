@@ -357,270 +357,482 @@
 
     <div class="cards-grid" id="cardsGrid">
 
-     <!-- LOCAL NYC MEDIA CARDS (11) -->
-<!-- FORM ACTION URL -->
-<!-- https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse -->
+ <!-- ===== LOCAL NYC MEDIA CARDS (paste inside your .cards-grid) ===== -->
 
 <!-- Ian Begley -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/ian_begley.jpg" alt="Ian Begley">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/ian_begley.jpg" alt="Ian Begley"></div>
+    <div class="meta">
+      <p class="media-name">Ian Begley</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Ian Begley</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="begley">Your Rating:</label>
-  <select class="select" name="entry.815230096" id="begley" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Ian Begley was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="ian_begley">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="ian_begley">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.815230096" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Alan Hahn -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/alan_hahn.jpg" alt="Alan Hahn">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/alan_hahn.jpg" alt="Alan Hahn"></div>
+    <div class="meta">
+      <p class="media-name">Alan Hahn</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Alan Hahn</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="hahn">Your Rating:</label>
-  <select class="select" name="entry.1467333831" id="hahn" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Alan Hahn was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="alan_hahn">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="alan_hahn">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.1467333831" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Monica McNutt -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/monica_mcnutt.jpg" alt="Monica McNutt">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/monica_mcnutt.jpg" alt="Monica McNutt"></div>
+    <div class="meta">
+      <p class="media-name">Monica McNutt</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Monica McNutt</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="mcnutt">Your Rating:</label>
-  <select class="select" name="entry.2145553835" id="mcnutt" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Monica McNutt was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="monica_mcnutt">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="monica_mcnutt">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.2145553835" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Bill Pidto -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/bill_pidto.jpg" alt="Bill Pidto">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/bill_pidto.jpg" alt="Bill Pidto"></div>
+    <div class="meta">
+      <p class="media-name">Bill Pidto</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Bill Pidto</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="pidto">Your Rating:</label>
-  <select class="select" name="entry.228026217" id="pidto" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Bill Pidto was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="bill_pidto">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="bill_pidto">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.228026217" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Wally Szczerbiak -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/wally_szczerbiak.jpg" alt="Wally Szczerbiak">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/wally_szczerbiak.jpg" alt="Wally Szczerbiak"></div>
+    <div class="meta">
+      <p class="media-name">Wally Szczerbiak</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Wally Szczerbiak</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="wally">Your Rating:</label>
-  <select class="select" name="entry.1316754163" id="wally" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Wally Szczerbiak was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="wally_szczerbiak">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="wally_szczerbiak">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.1316754163" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Steve Popper -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/steve_popper.jpg" alt="Steve Popper">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/steve_popper.jpg" alt="Steve Popper"></div>
+    <div class="meta">
+      <p class="media-name">Steve Popper</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Steve Popper</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="popper">Your Rating:</label>
-  <select class="select" name="entry.1387740233" id="popper" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Steve Popper was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="steve_popper">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="steve_popper">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.1387740233" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Stefan Bondy -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/stefan_bondy.jpg" alt="Stefan Bondy">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/stefan_bondy.jpg" alt="Stefan Bondy"></div>
+    <div class="meta">
+      <p class="media-name">Stefan Bondy</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Stefan Bondy</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="bondy">Your Rating:</label>
-  <select class="select" name="entry.1463574973" id="bondy" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Stefan Bondy was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="stefan_bondy">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="stefan_bondy">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.1463574973" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Peter Botte -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/peter_botte.jpg" alt="Peter Botte">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/peter_botte.jpg" alt="Peter Botte"></div>
+    <div class="meta">
+      <p class="media-name">Peter Botte</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Peter Botte</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="botte">Your Rating:</label>
-  <select class="select" name="entry.1036744431" id="botte" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Peter Botte was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="peter_botte">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="peter_botte">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <!-- IMPORTANT: your message had "entry.10367444" which looks truncated.
+           If your prefill URL shows entry.1036744431, use that full value. -->
+      <input type="hidden" name="entry.1036744431" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- James Edwards III -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/james_edwards_iii.jpg" alt="James Edwards III">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/james_edwards_iii.jpg" alt="James Edwards III"></div>
+    <div class="meta">
+      <p class="media-name">James Edwards III</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">James Edwards III</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="edwards">Your Rating:</label>
-  <select class="select" name="entry.350331188" id="edwards" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for James Edwards III was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="james_edwards_iii">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="james_edwards_iii">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.350331188" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Kristian Winfield -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/kristian_winfield.jpg" alt="Kristian Winfield">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/kristian_winfield.jpg" alt="Kristian Winfield"></div>
+    <div class="meta">
+      <p class="media-name">Kristian Winfield</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Kristian Winfield</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="winfield">Your Rating:</label>
-  <select class="select" name="entry.48419644" id="winfield" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Kristian Winfield was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="kristian_winfield">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="kristian_winfield">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.48419644" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- Mike Lupica -->
-<form class="card"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse"
-  method="POST"
-  target="ku_hidden_submit">
-  <div class="imgwrap">
-    <img class="img" src="images/local/mike_lupica.jpg" alt="Mike Lupica">
+<div class="media-card">
+  <div class="media-top">
+    <div class="avatar"><img src="images/local/mike_lupica.jpg" alt="Mike Lupica"></div>
+    <div class="meta">
+      <p class="media-name">Mike Lupica</p>
+      <p class="media-affil">Local NYC Media</p>
+    </div>
   </div>
-  <div class="name">Mike Lupica</div>
-  <p class="avg">Avg Fan Score: <strong>—</strong></p>
-  <p class="votes">Votes: <strong>—</strong></p>
 
-  <label class="label" for="lupica">Your Rating:</label>
-  <select class="select" name="entry.594500527" id="lupica" required>
-    <option value="" disabled selected>Select your rating</option>
-    <option>10 – GOAT 🐐</option><option>9 – Elite ⭐️</option><option>8 – Excellent 🔥</option>
-    <option>7 – Very Good 💪</option><option>6 – Solid 🔄</option><option>5 – Average 🟰</option>
-    <option>4 – Below Average 💤</option><option>3 – Weak 🪑</option><option>2 – Bad 🌴</option>
-    <option>1 – Trash 🗑️</option>
-  </select>
-  <button class="submit" type="submit">Submit</button>
-  <div class="confirm">Thanks! Your vote for Mike Lupica was recorded.</div>
-</form>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Avg Fan Score</div>
+      <div class="value" data-media-id="mike_lupica">--</div>
+    </div>
+    <div class="stat">
+      <div class="label">Votes</div>
+      <div class="value" data-votes-id="mike_lupica">0</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rating-wrap">
+    <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+
+    <form class="rating-form" method="POST" target="hidden_iframe"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
+      <input type="hidden" name="entry.594500527" value="" class="rating-input">
+
+      <div class="pills">
+        <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+        <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit" disabled>Submit rating</button>
+        <div class="submit-status"></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- NOTE: You originally listed 12 names earlier (including Brandon Tierney).
+     If you really want ONLY 11 cards, this list matches the 11 entry fields you provided. -->
