@@ -1,1000 +1,423 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Knicks Universe – Media Ratings</title>
-  <meta name="description" content="Fan voting for KnicksUniverse.com — rate NBA media personalities 10 (GOAT) to 1 (Trash). Votes are stored via Google Forms without leaving the page." />
 
-  <style>
-    :root{
-      --knicks-blue:#006BB6;
-      --knicks-orange:#F58426;
-      --bg:#0b1020;
-      --card:#0f172a;
-      --card2:#111c34;
-      --text:#f8fafc;
-      --muted:#a7b0c0;
-      --border:rgba(148,163,184,.22);
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KnicksUniverse – Local Media Ratings</title>
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(0,107,182,.25), transparent 55%),
-        radial-gradient(900px 500px at 85% 15%, rgba(245,132,38,.18), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
+<style>
 
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 16px 70px;
-    }
-/* Top Nav */
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 0 16px;
-  border-bottom:1px solid var(--border);
-  margin-bottom:14px;
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f7f7fb;
+margin:0;
+padding:30px 20px;
+color:#111;
 }
+
+/* NAVBAR */
+
+.nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding-bottom:16px;
+border-bottom:1px solid #ddd;
+margin-bottom:20px;
+}
+
 .nav-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
+display:flex;
+align-items:center;
+gap:10px;
 }
+
 .nav-logo{
-  width:34px;height:34px;border-radius:10px;
-  background:linear-gradient(135deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
-  box-shadow:0 10px 20px rgba(0,0,0,.25);
-  flex:0 0 auto;
+width:34px;
+height:34px;
+border-radius:10px;
+background:linear-gradient(135deg,#006BB6,#F58426);
 }
+
 .nav-title{
-  font-weight:950;
-  letter-spacing:.2px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+font-weight:900;
+font-size:18px;
 }
+
 .nav-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
+display:flex;
+gap:10px;
 }
+
 .nav a{
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  font-size:.9rem;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(2,6,23,.22);
-  transition:transform .12s ease, border-color .12s ease;
+text-decoration:none;
+font-weight:800;
+font-size:14px;
+padding:8px 12px;
+border-radius:999px;
+border:1px solid #ddd;
+color:#111;
 }
+
 .nav a:hover{
-  transform:translateY(-1px);
-  border-color:rgba(245,132,38,.45);
+background:#f3f4f6;
 }
+
 .nav a.active{
-  border-color:var(--knicks-orange);
-  box-shadow:0 0 0 2px rgba(245,132,38,.22);
+border-color:#F58426;
+box-shadow:0 0 0 2px rgba(245,132,38,.25);
 }
 
+/* HEADER */
 
-    
-    header{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-      padding:10px 0 18px;
-      border-bottom:1px solid var(--border);
-      margin-bottom:18px;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .brand h1{
-      margin:0;
-      font-size:1.6rem;
-      letter-spacing:.2px;
-    }
-
-    .brand p{
-      margin:0;
-      color:var(--muted);
-      font-size:.95rem;
-      line-height:1.35;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:rgba(15,23,42,.7);
-      box-shadow:var(--shadow);
-      font-weight:800;
-      font-size:.9rem;
-      white-space:nowrap;
-    }
-
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background:var(--knicks-orange);
-      box-shadow:0 0 0 4px rgba(245,132,38,.22);
-    }
-
-    .section-title{
-      margin:18px 0 10px;
-      font-size:1.05rem;
-      font-weight:900;
-      letter-spacing:.3px;
-      color:var(--text);
-    }
-
-    /* Sort bar */
-    .sortbar{
-      margin-top:12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .sortbar-label{
-      color:var(--muted);
-      font-size:.9rem;
-      font-weight:800;
-    }
-    .sortbtn{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(15,23,42,.82);
-      color:var(--text);
-      cursor:pointer;
-      font-weight:900;
-      font-size:.85rem;
-      transition:transform .12s ease;
-    }
-    .sortbtn:hover{ transform:translateY(-1px); }
-    .sortbtn.active{
-      border-color:var(--knicks-orange);
-      box-shadow:0 0 0 2px rgba(245,132,38,.25);
-    }
-/* Sort bar */
-.sortbtn.active{
-  border-color:var(--knicks-orange);
-  box-shadow:0 0 0 2px rgba(245,132,38,.25);
+header{
+text-align:center;
+margin-bottom:20px;
 }
 
-/* Top Nav */
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 0 16px;
-  border-bottom:1px solid var(--border);
-  margin-bottom:14px;
+h1{
+color:#006BB6;
+margin-bottom:10px;
 }
-/* …rest of nav CSS … */
 
-/* Grid + cards */
+/* GRID */
+
 .cards-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:16px;
-  margin-top:14px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+max-width:1200px;
+margin:auto;
 }
 
+/* CARD */
 
-    
-    /* Grid + cards */
-    .cards-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:16px;
-      margin-top:14px;
-    }
-    @media (max-width: 980px){
-      .cards-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 640px){
-      .cards-grid{ grid-template-columns:1fr; }
-    }
+.media-card{
+background:white;
+border:1px solid #e5e7eb;
+border-radius:14px;
+padding:16px;
+box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
 
-    .media-card{
-      border:1px solid var(--border);
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(17,28,52,.98), rgba(15,23,42,.98));
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
+.media-top{
+display:flex;
+align-items:center;
+gap:12px;
+}
 
-    .media-top{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      padding:14px 14px 10px;
-    }
+.avatar img{
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+}
 
-    .avatar{
-      width:62px;height:62px;border-radius:999px;
-      border:2px solid rgba(245,132,38,.6);
-      overflow:hidden;
-      flex:0 0 auto;
-      background:rgba(255,255,255,.08);
-    }
-    .avatar img{
-      width:100%;height:100%;
-      object-fit:cover;
-      display:block;
-    }
+.media-name{
+font-weight:800;
+margin:0;
+}
 
-    .meta{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
+.media-affil{
+font-size:13px;
+color:#666;
+margin:0;
+}
 
-    .media-name{
-      font-weight:950;
-      font-size:1.02rem;
-      line-height:1.1;
-      margin:0;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+/* STATS */
 
-    .media-affil{
-      margin:0;
-      font-size:.86rem;
-      color:var(--muted);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+.stats{
+display:flex;
+justify-content:space-between;
+margin-top:12px;
+}
 
-    .stats{
-      display:flex;
-      gap:10px;
-      padding:0 14px 12px;
-    }
+.stat .label{
+font-size:12px;
+color:#666;
+}
 
-    .stat{
-      flex:1;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:rgba(2,6,23,.28);
-    }
-    .stat .label{
-      font-size:.72rem;
-      color:var(--muted);
-      font-weight:900;
-      letter-spacing:.3px;
-      text-transform:uppercase;
-      margin-bottom:4px;
-    }
-    .stat .value{
-      font-size:1.15rem;
-      font-weight:950;
-    }
+.stat .value{
+font-size:18px;
+font-weight:800;
+}
 
-    .divider{
-      height:1px;
-      background:rgba(148,163,184,.18);
-      margin:2px 14px 12px;
-    }
+/* RATING */
 
-    .rating-wrap{
-      padding:0 14px 14px;
-    }
+.pills{
+display:grid;
+grid-template-columns:repeat(10,1fr);
+gap:4px;
+margin-top:10px;
+}
 
-    .rating-label{
-      margin:0 0 10px;
-      font-size:.9rem;
-      font-weight:900;
-      color:var(--text);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-    .rating-label span{
-      color:var(--muted);
-      font-weight:800;
-      font-size:.82rem;
-    }
+.rating-pill{
+text-align:center;
+padding:6px 0;
+border-radius:6px;
+background:#f3f4f6;
+cursor:pointer;
+font-weight:700;
+}
 
-    .pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:12px;
-    }
+.rating-pill:hover{
+background:#e5e7eb;
+}
 
-    .rating-pill{
-      border:1px solid var(--border);
-      background:rgba(2,6,23,.28);
-      color:var(--text);
-      padding:7px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:950;
-      font-size:.86rem;
-      user-select:none;
-      transition:transform .12s ease, border-color .12s ease;
-    }
-    .rating-pill:hover{ transform:translateY(-1px); }
-    .rating-pill.selected{
-      border-color:var(--knicks-orange);
-      box-shadow:0 0 0 2px rgba(245,132,38,.22);
-    }
+.submit-row{
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-    .submit-row{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .submit-btn{
-      border:0;
-      padding:10px 12px;
-      border-radius:14px;
-      font-weight:950;
-      cursor:pointer;
-      background:linear-gradient(90deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
-      color:#071018;
-      box-shadow:0 10px 20px rgba(0,0,0,.28);
-    }
-    .submit-btn:disabled{
-      opacity:.45;
-      cursor:not-allowed;
-      filter:saturate(.6);
-    }
+.submit-btn{
+padding:6px 10px;
+font-weight:700;
+border:none;
+border-radius:6px;
+background:#006BB6;
+color:white;
+cursor:pointer;
+}
 
-    .submit-status{
-      color:var(--muted);
-      font-size:.85rem;
-      font-weight:800;
-    }
+.submit-btn:disabled{
+opacity:.5;
+cursor:default;
+}
 
-    footer{
-      margin-top:20px;
-      color:var(--muted);
-      font-size:.85rem;
-      line-height:1.35;
-      padding-top:16px;
-      border-top:1px solid var(--border);
-    }
-  </style>
+/* SORT */
+
+.sortbar{
+text-align:center;
+margin-bottom:20px;
+}
+
+.sortbtn{
+padding:8px 14px;
+border-radius:999px;
+border:1px solid #ddd;
+background:white;
+font-weight:700;
+margin:4px;
+cursor:pointer;
+}
+
+.sortbtn.active{
+border-color:#006BB6;
+box-shadow:0 0 0 2px rgba(0,107,182,.15);
+}
+
+</style>
 </head>
 
 <body>
-  <div class="wrap">
 
 <nav class="nav">
-  <div class="nav-left">
-    <div class="nav-logo" aria-hidden="true"></div>
-    <div class="nav-title">Knicks Universe</div>
-  </div>
 
-  <div class="nav-links">
-    <a class="active" href="media-ratings.html">Media Ratings</a>
-    <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
-  </div>
+<div class="nav-left">
+<div class="nav-logo"></div>
+<div class="nav-title">Knicks Universe</div>
+</div>
+
+<div class="nav-links">
+
+<a href="https://kentav5.github.io/Knicks-Universe-Player-Ratings/ratings.html">Player Ratings</a>
+
+<a href="https://kentav5.github.io/Knicks-Universe-Media-Ratings/media-ratings.html">
+National Media
+</a>
+
+<a class="active" href="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/local-media-ratings.html">
+Local Media
+</a>
+
+</div>
+
 </nav>
 
-    
-    <header>
-      <div class="brand">
-        <h1>Knicks Universe – Media Ratings</h1>
-        <p>Rate national NBA media personalities from <strong>GOAT (10)</strong> to <strong>Trash (1)</strong>. Your vote updates the live averages.</p>
-      </div>
-      <div class="badge"><span class="dot"></span> Live fan voting</div>
-    </header>
+<header>
 
-    <div class="section-title">National Media</div>
+<h1>Local NYC Media Ratings</h1>
 
-    <div class="sortbar">
-      <div class="sortbar-label">Sort:</div>
-      <button class="sortbtn active" data-sort="rating" type="button">Highest Rated</button>
-      <button class="sortbtn" data-sort="votes" type="button">Most Votes</button>
-      <button class="sortbtn" data-sort="az" type="button">A → Z</button>
-    </div>
+<p>Rate each Knicks media personality from <strong>10 (GOAT)</strong> to <strong>1 (Trash)</strong>.</p>
 
-    <div class="cards-grid" id="mediaGrid">
+</header>
 
-      <!-- Zach Lowe -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/zach_lowe.jpg" alt="Zach Lowe"></div>
-          <div class="meta">
-            <p class="media-name">Zach Lowe</p>
-            <p class="media-affil">ESPN (The Lowe Post)</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="zach_lowe">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="zach_lowe">0</div>
-          </div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Zach Lowe">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<div class="sortbar">
 
-      <!-- Stephen A. Smith -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/stephen_a_smith.jpg" alt="Stephen A. Smith"></div>
-          <div class="meta">
-            <p class="media-name">Stephen A. Smith</p>
-            <p class="media-affil">ESPN</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="stephen_a_smith">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="stephen_a_smith">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Stephen A. Smith">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<button class="sortbtn active" data-sort="rating">Highest Rated</button>
+<button class="sortbtn" data-sort="votes">Most Votes</button>
+<button class="sortbtn" data-sort="az">A-Z</button>
 
-      <!-- Kevin O'Connor -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/kevin_oconnor.jpg" alt="Kevin O'Connor (KOC)"></div>
-          <div class="meta">
-            <p class="media-name">Kevin O'Connor (KOC)</p>
-            <p class="media-affil">The Ringer</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="kevin_oconnor">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="kevin_oconnor">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Kevin O'Connor (KOC)">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+</div>
 
-      <!-- Chris Vernon -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/chris_vernon.jpg" alt="Chris Vernon"></div>
-          <div class="meta">
-            <p class="media-name">Chris Vernon</p>
-            <p class="media-affil">The Ringer</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="chris_vernon">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="chris_vernon">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Chris Vernon">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
 
-      <!-- Amin Elhassan -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/amin_elhassan.jpg" alt="Amin Elhassan"></div>
-          <div class="meta">
-            <p class="media-name">Amin Elhassan</p>
-            <p class="media-affil">Meadowlark</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="amin_elhassan">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="amin_elhassan">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Amin Elhassan">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<div class="cards-grid" id="mediaGrid">
 
-      <!-- Bomani Jones -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/bomani_jones.jpg" alt="Bomani Jones"></div>
-          <div class="meta">
-            <p class="media-name">Bomani Jones</p>
-            <p class="media-affil">Analyst</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="bomani_jones">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="bomani_jones">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Bomani Jones">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<!-- TEMPLATE CARD -->
 
-      <!-- Nick Wright -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/nick_wright.jpg" alt="Nick Wright"></div>
-          <div class="meta">
-            <p class="media-name">Nick Wright</p>
-            <p class="media-affil">FS1</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="nick_wright">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="nick_wright">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Nick Wright">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+<script>
 
-      <!-- Skip Bayless -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/skip_bayless.jpg" alt="Skip Bayless"></div>
-          <div class="meta">
-            <p class="media-name">Skip Bayless</p>
-            <p class="media-affil">FS1</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="skip_bayless">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="skip_bayless">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Skip Bayless">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+const mediaMembers = [
 
-      <!-- Shannon Sharpe -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/shannon_sharpe.jpg" alt="Shannon Sharpe"></div>
-          <div class="meta">
-            <p class="media-name">Shannon Sharpe</p>
-            <p class="media-affil">Nightcap / Independent</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="shannon_sharpe">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="shannon_sharpe">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Shannon Sharpe">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+["Ian Begley","SNY","ian_begley.jpg","entry.815230096"],
+["Alan Hahn","ESPN / MSG","alan_hahn.jpg","entry.1467333831"],
+["Monica McNutt","ESPN","monica_mcnutt.jpg","entry.2145553835"],
+["Bill Pidto","MSG Networks","bill_pidto.jpg","entry.228026217"],
+["Wally Szczerbiak","MSG Networks","wally_szczerbiak.jpg","entry.1316754163"],
+["Steve Popper","Newsday","steve_popper.jpg","entry.1387740233"],
+["Stefan Bondy","NY Post","stefan_bondy.jpg","entry.1463574973"],
+["Peter Botte","NY Post","peter_botte.jpg","entry.10367444"],
+["James Edwards III","The Athletic","james_edwards.jpg","entry.350331188"],
+["Kristian Winfield","NY Daily News","kristian_winfield.jpg","entry.48419644"],
+["Mike Lupica","New York Daily News","mike_lupica.jpg","entry.594500527"]
 
-      <!-- Malika Andrews -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/malika_andrews.jpg" alt="Malika Andrews"></div>
-          <div class="meta">
-            <p class="media-name">Malika Andrews</p>
-            <p class="media-affil">ESPN</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="malika_andrews">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="malika_andrews">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Malika Andrews">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+];
 
-      <!-- Kendrick Perkins -->
-      <div class="media-card">
-        <div class="media-top">
-          <div class="avatar"><img src="images/media/kendrick_perkins.jpg" alt="Kendrick Perkins"></div>
-          <div class="meta">
-            <p class="media-name">Kendrick Perkins</p>
-            <p class="media-affil">ESPN</p>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="kendrick_perkins">--</div></div>
-          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="kendrick_perkins">0</div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="rating-wrap">
-          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
-          <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
-            <input type="hidden" name="entry.756421029" value="Kendrick Perkins">
-            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
-            <div class="pills">
-              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
-              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
-            </div>
-            <div class="submit-row">
-              <button class="submit-btn" type="submit" disabled>Submit rating</button>
-              <div class="submit-status"></div>
-            </div>
-          </form>
-        </div>
-      </div>
+const grid=document.getElementById("mediaGrid");
 
-    </div>
+mediaMembers.forEach(member=>{
 
-    <footer>
-      Tip: If you don’t see updates instantly, refresh the page. Live stats update every ~30 seconds.
-    </footer>
-  </div>
+const card=document.createElement("div");
+card.className="media-card";
+card.dataset.avg=0;
+card.dataset.votes=0;
 
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
+card.innerHTML=`
 
-  <script>
-    // =========================
-    // CONFIG
-    // =========================
-    const SUMMARY_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT2aSqel_NhRmHV-eEl7NkgNpk1tPYwen8cnH9ufyXduQpyuURiGfHTXCAi7Ke56p7paEX3G1brmdtw/pub?gid=2017545017&single=true&output=csv";
+<div class="media-top">
 
-    const MEDIA_NAME_BY_ID = {
-      zach_lowe: "Zach Lowe",
-      stephen_a_smith: "Stephen A. Smith",
-      kevin_oconnor: "Kevin O'Connor (KOC)",
-      chris_vernon: "Chris Vernon",
-      amin_elhassan: "Amin Elhassan",
-      bomani_jones: "Bomani Jones",
-      nick_wright: "Nick Wright",
-      skip_bayless: "Skip Bayless",
-      shannon_sharpe: "Shannon Sharpe",
-      malika_andrews: "Malika Andrews",
-      kendrick_perkins: "Kendrick Perkins"
-    };
+<div class="avatar">
+<img src="images/local/${member[2]}"
+onerror="this.remove()">
+</div>
 
-    // =========================
-    // CSV parsing
-    // =========================
-    function parseCsvLine(line) {
-      const result = [];
-      let cur = "";
-      let inQuotes = false;
+<div>
 
-      for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"') {
-          if (inQuotes && line[i + 1] === '"') {
-            cur += '"';
-            i++;
-          } else {
-            inQuotes = !inQuotes;
-          }
-        } else if (ch === "," && !inQuotes) {
-          result.push(cur);
-          cur = "";
-        } else {
-          cur += ch;
-        }
-      }
-      result.push(cur);
-      return result.map(s => s.trim());
-    }
+<p class="media-name">${member[0]}</p>
+<p class="media-affil">${member[1]}</p>
 
-    // =========================
-    // Voting
-    // =========================
-    function initVoting() {
-      document.querySelectorAll(".media-card").forEach(card => {
-        const pills = card.querySelectorAll(".rating-pill");
-        const ratingInput = card.querySelector(".rating-input");
-        const submitBtn = card.querySelector(".submit-btn");
-        const statusEl = card.querySelector(".submit-status");
-        const form = card.querySelector("form");
+</div>
 
-        if (!pills.length || !ratingInput || !submitBtn || !form) return;
+</div>
 
-        pills.forEach(pill => {
-          pill.addEventListener("click", () => {
-            const v = pill.dataset.value;
-            ratingInput.value = v;
+<div class="stats">
 
-            pills.forEach(p => p.classList.remove("selected"));
-            pill.classList.add("selected");
+<div class="stat">
+<div class="label">Avg Fan Score</div>
+<div class="value avg">--</div>
+</div>
 
-            submitBtn.disabled = false;
-            if (statusEl) statusEl.textContent = "";
-          });
-        });
+<div class="stat">
+<div class="label">Votes</div>
+<div class="value votes">0</div>
+</div>
 
-        form.addEventListener("submit", () => {
-          submitBtn.disabled = true;
-          if (statusEl) statusEl.textContent = "Vote submitted ✅";
-          setTimeout(fetchSummaryAndUpdateUI, 1500);
-        });
-      });
-    }
+</div>
 
-    // =========================
-    // Sorting
-    // =========================
-    function getCardName(card) {
-      const el = card.querySelector(".media-name");
-      return (el ? el.textContent : "").trim().toLowerCase();
-    }
-    function getCardAvg(card) {
-      const el = card.querySelector("[data-media-id]");
-      const v = el ? Number(el.textContent) : NaN;
-      return Number.isFinite(v) ? v : -1;
-    }
-    function getCardVotes(card) {
-      const el = card.querySelector("[data-votes-id]");
-      const v = el ? Number(el.textContent) : NaN;
-      return Number.isFinite(v) ? v : 0;
-    }
+<form class="rating-form" method="POST"
+target="hidden_iframe"
+action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
 
-    function sortCards(mode) {
-      const grid = document.getElementById("mediaGrid");
-      if (!grid) return;
+<input type="hidden" name="${member[3]}" class="rating-input">
 
-      const cards = Array.from(grid.querySelectorAll(".media-card"));
+<div class="pills">
 
-      cards.sort((a, b) => {
-        if (mode === "votes") {
-          const dv = getCardVotes(b) - getCardVotes(a);
-          if (dv !== 0) return dv;
-          return getCardAvg(b) - getCardAvg(a);
-        }
-        if (mode === "az") {
-          return getCardName(a).localeCompare(getCardName(b));
-        }
-        const dr = getCardAvg(b) - getCardAvg(a);
-        if (dr !== 0) return dr;
-        return getCardVotes(b) - getCardVotes(a);
-      });
+${[10,9,8,7,6,5,4,3,2,1].map(n=>`<div class="rating-pill">${n}</div>`).join("")}
 
-      cards.forEach(card => grid.appendChild(card));
-    }
+</div>
 
-    function initSorting() {
-      const buttons = document.querySelectorAll(".sortbtn");
-      if (!buttons.length) return;
+<div class="submit-row">
 
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          buttons.forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          sortCards(btn.dataset.sort);
-        });
-      });
+<button class="submit-btn" disabled>Submit</button>
+<div class="status"></div>
 
-      sortCards("rating");
-    }
+</div>
 
-    // =========================
-    // Fetch Summary + update UI
-    // =========================
-    async function fetchSummaryAndUpdateUI() {
-      if (!SUMMARY_CSV_URL || SUMMARY_CSV_URL.includes("PASTE_")) return;
+</form>
 
-      const url = SUMMARY_CSV_URL + (SUMMARY_CSV_URL.includes("?") ? "&" : "?") + "v=" + Date.now();
+`;
 
-      let res;
-      try {
-        res = await fetch(url, { cache: "no-store" });
-      } catch (e) {
-        console.error("Failed to fetch CSV:", e);
-        return;
-      }
-      if (!res.ok) {
-        console.error("CSV fetch not OK:", res.status, res.statusText);
-        return;
-      }
+grid.appendChild(card);
 
-      const text = await res.text();
-      const lines = text.split(/\r?\n/).filter(Boolean);
-      if (lines.length < 2) return;
+});
 
-      const rows = lines.slice(1).map(parseCsvLine);
+</script>
 
-      const byName = new Map();
-      for (const cols of rows) {
-        const name = cols[0];
-        const avg = cols[1];
-        const votes = cols[2];
-        if (name) byName.set(name, { avg, votes });
-      }
+</div>
 
-      for (const [id, name] of Object.entries(MEDIA_NAME_BY_ID)) {
-        const scoreEl = document.querySelector(`[data-media-id="${id}"]`);
-        const votesEl = document.querySelector(`[data-votes-id="${id}"]`);
-        const rec = byName.get(name);
+<script>
 
-        if (!rec) {
-          if (scoreEl) scoreEl.textContent = "--";
-          if (votesEl) votesEl.textContent = "0";
-          continue;
-        }
+/* Rating pills */
 
-        const avgNum = Number(rec.avg);
-        const votesNum = Number(rec.votes);
+document.addEventListener("click",e=>{
 
-        if (scoreEl) scoreEl.textContent = Number.isFinite(avgNum) ? avgNum.toFixed(1) : "--";
-        if (votesEl) votesEl.textContent = Number.isFinite(votesNum) ? String(votesNum) : "0";
-      }
+if(!e.target.classList.contains("rating-pill")) return;
 
-      const active = document.querySelector(".sortbtn.active");
-      sortCards(active ? active.dataset.sort : "rating");
-    }
+const pill=e.target;
+const form=pill.closest("form");
 
-    // Boot
-    document.addEventListener("DOMContentLoaded", () => {
-      initVoting();
-      initSorting();
-      fetchSummaryAndUpdateUI();
-      setInterval(fetchSummaryAndUpdateUI, 30000);
-    });
-  </script>
+form.querySelectorAll(".rating-pill").forEach(p=>p.style.background="#f3f4f6");
+
+pill.style.background="#006BB6";
+pill.style.color="white";
+
+form.querySelector(".rating-input").value=pill.textContent;
+
+form.querySelector(".submit-btn").disabled=false;
+
+});
+
+/* Sorting */
+
+const sortBtns=document.querySelectorAll(".sortbtn");
+
+sortBtns.forEach(btn=>{
+
+btn.onclick=()=>{
+
+sortBtns.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+sortCards(btn.dataset.sort);
+
+};
+
+});
+
+function sortCards(mode){
+
+const grid=document.getElementById("mediaGrid");
+
+const cards=[...grid.children];
+
+cards.sort((a,b)=>{
+
+const aAvg=parseFloat(a.dataset.avg||0);
+const bAvg=parseFloat(b.dataset.avg||0);
+
+const aVotes=parseInt(a.dataset.votes||0);
+const bVotes=parseInt(b.dataset.votes||0);
+
+if(mode==="votes") return bVotes-aVotes;
+
+if(mode==="az") return a.querySelector(".media-name").textContent.localeCompare(b.querySelector(".media-name").textContent);
+
+if(bAvg!==aAvg) return bAvg-aAvg;
+
+return bVotes-aVotes;
+
+});
+
+cards.forEach(c=>grid.appendChild(c));
+
+}
+
+</script>
+
 </body>
 </html>
 
