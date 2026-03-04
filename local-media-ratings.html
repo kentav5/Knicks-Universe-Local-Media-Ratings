@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Knicks Universe – Local NYC Media Ratings</title>
-  <meta name="description" content="Rate local NYC media personalities. Votes submit to Google Forms without leaving the page. Live averages and vote counts update automatically." />
+  <title>Knicks Universe – Media Ratings</title>
+  <meta name="description" content="Fan voting for KnicksUniverse.com — rate NBA media personalities 10 (GOAT) to 1 (Trash). Votes are stored via Google Forms without leaving the page." />
 
   <style>
     :root{
@@ -17,9 +17,8 @@
       --muted:#a7b0c0;
       --border:rgba(148,163,184,.22);
       --shadow:0 10px 30px rgba(0,0,0,.35);
-      --ok:#16a34a;
-      --bad:#ef4444;
     }
+
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -30,67 +29,69 @@
         var(--bg);
       color:var(--text);
     }
+
     .wrap{
       max-width:1100px;
       margin:0 auto;
-      padding:18px 16px 70px;
+      padding:28px 16px 70px;
     }
+/* Top Nav */
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0 16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:14px;
+}
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.nav-logo{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+  flex:0 0 auto;
+}
+.nav-title{
+  font-weight:950;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:900;
+  font-size:.9rem;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(2,6,23,.22);
+  transition:transform .12s ease, border-color .12s ease;
+}
+.nav a:hover{
+  transform:translateY(-1px);
+  border-color:rgba(245,132,38,.45);
+}
+.nav a.active{
+  border-color:var(--knicks-orange);
+  box-shadow:0 0 0 2px rgba(245,132,38,.22);
+}
 
-    /* Top nav */
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 0 16px;
-      border-bottom:1px solid var(--border);
-      margin-bottom:14px;
-    }
-    .nav-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-    .nav-logo{
-      width:34px;height:34px;border-radius:10px;
-      background:linear-gradient(135deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
-      flex:0 0 auto;
-    }
-    .nav-title{
-      font-weight:950;
-      letter-spacing:.2px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .nav-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .nav a{
-      text-decoration:none;
-      color:var(--text);
-      font-weight:900;
-      font-size:.9rem;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(2,6,23,.22);
-      transition:transform .12s ease, border-color .12s ease;
-    }
-    .nav a:hover{
-      transform:translateY(-1px);
-      border-color:rgba(245,132,38,.45);
-    }
-    .nav a.active{
-      border-color:var(--knicks-orange);
-      box-shadow:0 0 0 2px rgba(245,132,38,.22);
-    }
 
+    
     header{
       display:flex;
       align-items:flex-end;
@@ -99,20 +100,28 @@
       flex-wrap:wrap;
       padding:10px 0 18px;
       border-bottom:1px solid var(--border);
-      margin-bottom:14px;
+      margin-bottom:18px;
     }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
     .brand h1{
       margin:0;
       font-size:1.6rem;
       letter-spacing:.2px;
     }
+
     .brand p{
-      margin:6px 0 0;
+      margin:0;
       color:var(--muted);
       font-size:.95rem;
       line-height:1.35;
-      max-width:780px;
     }
+
     .badge{
       display:inline-flex;
       align-items:center;
@@ -126,15 +135,24 @@
       font-size:.9rem;
       white-space:nowrap;
     }
+
     .dot{
       width:10px;height:10px;border-radius:999px;
       background:var(--knicks-orange);
       box-shadow:0 0 0 4px rgba(245,132,38,.22);
     }
 
+    .section-title{
+      margin:18px 0 10px;
+      font-size:1.05rem;
+      font-weight:900;
+      letter-spacing:.3px;
+      color:var(--text);
+    }
+
     /* Sort bar */
     .sortbar{
-      margin:12px 0 6px;
+      margin-top:12px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
@@ -143,7 +161,7 @@
     .sortbar-label{
       color:var(--muted);
       font-size:.9rem;
-      font-weight:900;
+      font-weight:800;
     }
     .sortbtn{
       padding:8px 12px;
@@ -152,17 +170,43 @@
       background:rgba(15,23,42,.82);
       color:var(--text);
       cursor:pointer;
-      font-weight:950;
+      font-weight:900;
       font-size:.85rem;
       transition:transform .12s ease;
-      user-select:none;
     }
     .sortbtn:hover{ transform:translateY(-1px); }
     .sortbtn.active{
       border-color:var(--knicks-orange);
       box-shadow:0 0 0 2px rgba(245,132,38,.25);
     }
+/* Sort bar */
+.sortbtn.active{
+  border-color:var(--knicks-orange);
+  box-shadow:0 0 0 2px rgba(245,132,38,.25);
+}
 
+/* Top Nav */
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0 16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:14px;
+}
+/* …rest of nav CSS … */
+
+/* Grid + cards */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:14px;
+}
+
+
+    
     /* Grid + cards */
     .cards-grid{
       display:grid;
@@ -173,7 +217,7 @@
     @media (max-width: 980px){
       .cards-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
     }
-    @media (max-width: 620px){
+    @media (max-width: 640px){
       .cards-grid{ grid-template-columns:1fr; }
     }
 
@@ -182,52 +226,50 @@
       border-radius:18px;
       background:linear-gradient(180deg, rgba(17,28,52,.98), rgba(15,23,42,.98));
       box-shadow:var(--shadow);
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      overflow:hidden;
     }
 
     .media-top{
       display:flex;
       gap:12px;
       align-items:center;
+      padding:14px 14px 10px;
     }
-  .avatar{
-  width:56px;
-  height:56px;
-  border-radius:999px;
-  overflow:hidden;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(148,163,184,.22);
-  flex:0 0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
 
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.avatar.no-img{ color:#f8fafc; }    
-    
-    .meta{ min-width:0; }
+    .avatar{
+      width:62px;height:62px;border-radius:999px;
+      border:2px solid rgba(245,132,38,.6);
+      overflow:hidden;
+      flex:0 0 auto;
+      background:rgba(255,255,255,.08);
+    }
+    .avatar img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .meta{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+
     .media-name{
-      margin:0;
       font-weight:950;
-      font-size:1rem;
-      line-height:1.15;
+      font-size:1.02rem;
+      line-height:1.1;
+      margin:0;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
     }
+
     .media-affil{
-      margin:4px 0 0;
+      margin:0;
+      font-size:.86rem;
       color:var(--muted);
-      font-size:.88rem;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -236,22 +278,25 @@
     .stats{
       display:flex;
       gap:10px;
+      padding:0 14px 12px;
     }
+
     .stat{
       flex:1;
-      border:1px solid rgba(148,163,184,.18);
-      background:rgba(2,6,23,.18);
-      border-radius:14px;
       padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.28);
     }
-    .label{
+    .stat .label{
+      font-size:.72rem;
       color:var(--muted);
-      font-size:.78rem;
       font-weight:900;
-      letter-spacing:.2px;
+      letter-spacing:.3px;
+      text-transform:uppercase;
       margin-bottom:4px;
     }
-    .value{
+    .stat .value{
       font-size:1.15rem;
       font-weight:950;
     }
@@ -259,18 +304,26 @@
     .divider{
       height:1px;
       background:rgba(148,163,184,.18);
-      margin:2px 0 4px;
+      margin:2px 14px 12px;
+    }
+
+    .rating-wrap{
+      padding:0 14px 14px;
     }
 
     .rating-label{
-      font-weight:950;
+      margin:0 0 10px;
       font-size:.9rem;
-      margin-bottom:8px;
+      font-weight:900;
+      color:var(--text);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
     }
     .rating-label span{
       color:var(--muted);
       font-weight:800;
-      margin-left:8px;
       font-size:.82rem;
     }
 
@@ -278,73 +331,62 @@
       display:flex;
       flex-wrap:wrap;
       gap:8px;
+      margin-bottom:12px;
     }
+
     .rating-pill{
-      width:38px;height:34px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.28);
+      color:var(--text);
+      padding:7px 10px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.22);
-      background:rgba(2,6,23,.22);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:950;
       cursor:pointer;
+      font-weight:950;
+      font-size:.86rem;
       user-select:none;
       transition:transform .12s ease, border-color .12s ease;
     }
-    .rating-pill:hover{
-      transform:translateY(-1px);
-      border-color:rgba(245,132,38,.45);
-    }
+    .rating-pill:hover{ transform:translateY(-1px); }
     .rating-pill.selected{
       border-color:var(--knicks-orange);
       box-shadow:0 0 0 2px rgba(245,132,38,.22);
     }
 
     .submit-row{
-      margin-top:10px;
       display:flex;
-      gap:10px;
       align-items:center;
-      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
     }
     .submit-btn{
-      flex:1;
       border:0;
-      border-radius:14px;
       padding:10px 12px;
+      border-radius:14px;
       font-weight:950;
       cursor:pointer;
-      color:#071018;
       background:linear-gradient(90deg, rgba(0,107,182,.95), rgba(245,132,38,.92));
-      box-shadow:0 10px 20px rgba(0,0,0,.22);
-      opacity:.55;
+      color:#071018;
+      box-shadow:0 10px 20px rgba(0,0,0,.28);
     }
-    .submit-btn.enabled{ opacity:1; }
+    .submit-btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+      filter:saturate(.6);
+    }
+
     .submit-status{
-      min-width:110px;
-      text-align:right;
-      font-size:.85rem;
       color:var(--muted);
+      font-size:.85rem;
       font-weight:800;
     }
-    .submit-status.ok{ color:var(--ok); }
-    .submit-status.bad{ color:var(--bad); }
 
     footer{
-      margin-top:18px;
+      margin-top:20px;
       color:var(--muted);
       font-size:.85rem;
       line-height:1.35;
-      padding-top:14px;
+      padding-top:16px;
       border-top:1px solid var(--border);
-    }
-    code{
-      background:rgba(2,6,23,.35);
-      border:1px solid rgba(148,163,184,.18);
-      padding:2px 6px;
-      border-radius:8px;
-      color:var(--text);
     }
   </style>
 </head>
@@ -352,69 +394,64 @@
 <body>
   <div class="wrap">
 
-    <nav class="nav">
-      <div class="nav-left">
-        <div class="nav-logo" aria-hidden="true"></div>
-        <div class="nav-title">Knicks Universe</div>
-      </div>
-      <div class="nav-links">
-        <a href="https://kentav5.github.io/Knicks-Universe-Media-Ratings/media-ratings.html">National Media</a>
-        <a class="active" href="local-media-ratings.html">Local NYC Media</a>
-        <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
-      </div>
-    </nav>
+<nav class="nav">
+  <div class="nav-left">
+    <div class="nav-logo" aria-hidden="true"></div>
+    <div class="nav-title">Knicks Universe</div>
+  </div>
 
-    <!-- Hidden target so Google’s response doesn’t navigate away -->
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
+  <div class="nav-links">
+    <a class="active" href="media-ratings.html">Media Ratings</a>
+    <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
+  </div>
+</nav>
 
+    
     <header>
       <div class="brand">
-        <h1>Local NYC Media Ratings</h1>
-        <p>Rate local Knicks / NYC media personalities from <strong>10 (GOAT)</strong> to <strong>1 (Trash)</strong>. Your vote updates live averages and vote counts automatically.</p>
+        <h1>Knicks Universe – Media Ratings</h1>
+        <p>Rate national NBA media personalities from <strong>GOAT (10)</strong> to <strong>Trash (1)</strong>. Your vote updates the live averages.</p>
       </div>
       <div class="badge"><span class="dot"></span> Live fan voting</div>
     </header>
 
+    <div class="section-title">National Media</div>
+
     <div class="sortbar">
       <div class="sortbar-label">Sort:</div>
-      <button class="sortbtn active" type="button" data-sort="rating">Highest Rated</button>
-      <button class="sortbtn" type="button" data-sort="votes">Most Votes</button>
-      <button class="sortbtn" type="button" data-sort="az">A–Z</button>
+      <button class="sortbtn active" data-sort="rating" type="button">Highest Rated</button>
+      <button class="sortbtn" data-sort="votes" type="button">Most Votes</button>
+      <button class="sortbtn" data-sort="az" type="button">A → Z</button>
     </div>
 
     <div class="cards-grid" id="mediaGrid">
 
-      <!-- Ian Begley -->
-      <div class="media-card" data-key="begley" data-avg="0" data-votes="0">
+      <!-- Zach Lowe -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-  <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/ian_begley.jpg"
-       alt="Ian Begley"onerror="
-         this.parentElement.classList.add('no-img');
-         this.parentElement.textContent='IB';
-       ">
-</div>
+          <div class="avatar"><img src="images/media/zach_lowe.jpg" alt="Zach Lowe"></div>
           <div class="meta">
-            <p class="media-name">Ian Begley</p>
-            <p class="media-affil">SNY / SportsNite</p>
+            <p class="media-name">Zach Lowe</p>
+            <p class="media-affil">ESPN (The Lowe Post)</p>
           </div>
         </div>
         <div class="stats">
           <div class="stat">
             <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="begley">--</div>
+            <div class="value" data-media-id="zach_lowe">--</div>
           </div>
           <div class="stat">
             <div class="label">Votes</div>
-            <div class="value" data-votes-id="begley">0</div>
+            <div class="value" data-votes-id="zach_lowe">0</div>
           </div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.815230096" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Zach Lowe">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -427,34 +464,26 @@
         </div>
       </div>
 
-      <!-- Alan Hahn -->
-      <div class="media-card" data-key="hahn" data-avg="0" data-votes="0">
+      <!-- Stephen A. Smith -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-            <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/alan_hahn.jpg" alt="Alan Hahn"> 
-            onerror="this.remove(); this.parentElement.textContent='AH';">
-          </div>
+          <div class="avatar"><img src="images/media/stephen_a_smith.jpg" alt="Stephen A. Smith"></div>
           <div class="meta">
-            <p class="media-name">Alan Hahn</p>
-            <p class="media-affil">MSG / ESPN NY</p>
+            <p class="media-name">Stephen A. Smith</p>
+            <p class="media-affil">ESPN</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="hahn">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="hahn">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="stephen_a_smith">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="stephen_a_smith">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.1467333831" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Stephen A. Smith">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -467,32 +496,26 @@
         </div>
       </div>
 
-      <!-- Monica McNutt -->
-      <div class="media-card" data-key="mcnutt" data-avg="0" data-votes="0">
+      <!-- Kevin O'Connor -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-            <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/monica_mcNutt.jpg" alt="Monica McNutt" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');this.parentElement.textContent='MM';"></div>
+          <div class="avatar"><img src="images/media/kevin_oconnor.jpg" alt="Kevin O'Connor (KOC)"></div>
           <div class="meta">
-            <p class="media-name">Monica McNutt</p>
-            <p class="media-affil">ESPN / MSG</p>
+            <p class="media-name">Kevin O'Connor (KOC)</p>
+            <p class="media-affil">The Ringer</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="mcnutt">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="mcnutt">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="kevin_oconnor">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="kevin_oconnor">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.2145553835" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Kevin O'Connor (KOC)">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -505,32 +528,26 @@
         </div>
       </div>
 
-      <!-- Bill Pidto -->
-      <div class="media-card" data-key="pidto" data-avg="0" data-votes="0">
+      <!-- Chris Vernon -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/bill_pidto.jpg" alt="Bill Pidto" onerror="this.remove(); this.parentElement.textContent='BP';"></div>
+          <div class="avatar"><img src="images/media/chris_vernon.jpg" alt="Chris Vernon"></div>
           <div class="meta">
-            <p class="media-name">Bill Pidto</p>
-            <p class="media-affil">MSG / Knicks Postgame</p>
+            <p class="media-name">Chris Vernon</p>
+            <p class="media-affil">The Ringer</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="pidto">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="pidto">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="chris_vernon">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="chris_vernon">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.228026217" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Chris Vernon">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -543,32 +560,26 @@
         </div>
       </div>
 
-      <!-- Wally Szczerbiak -->
-      <div class="media-card" data-key="wally" data-avg="0" data-votes="0">
+      <!-- Amin Elhassan -->
+      <div class="media-card">
         <div class="media-top">
-         <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media/images/local/wally_szczerbiak.jpg" alt="Wally Szczerbiak" onerror="this.remove(); this.parentElement.textContent='WS';"></div>
+          <div class="avatar"><img src="images/media/amin_elhassan.jpg" alt="Amin Elhassan"></div>
           <div class="meta">
-            <p class="media-name">Wally Szczerbiak</p>
-            <p class="media-affil">MSG / Analyst</p>
+            <p class="media-name">Amin Elhassan</p>
+            <p class="media-affil">Meadowlark</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="wally">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="wally">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="amin_elhassan">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="amin_elhassan">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.1316754163" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Amin Elhassan">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -581,32 +592,26 @@
         </div>
       </div>
 
-      <!-- Steve Popper -->
-      <div class="media-card" data-key="popper" data-avg="0" data-votes="0">
+      <!-- Bomani Jones -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/steve_popper.jpg" alt="Steve Popper" onerror="this.remove(); this.parentElement.textContent='SP';"></div>
+          <div class="avatar"><img src="images/media/bomani_jones.jpg" alt="Bomani Jones"></div>
           <div class="meta">
-            <p class="media-name">Steve Popper</p>
-            <p class="media-affil">Newsday</p>
+            <p class="media-name">Bomani Jones</p>
+            <p class="media-affil">Analyst</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="popper">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="popper">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="bomani_jones">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="bomani_jones">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.1387740233" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Bomani Jones">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -619,32 +624,26 @@
         </div>
       </div>
 
-      <!-- Stefan Bondy -->
-      <div class="media-card" data-key="bondy" data-avg="0" data-votes="0">
+      <!-- Nick Wright -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/stefan_bondy.jpg" alt="Stefan Bondy" onerror="this.remove(); this.parentElement.textContent='SB';"></div>
+          <div class="avatar"><img src="images/media/nick_wright.jpg" alt="Nick Wright"></div>
           <div class="meta">
-            <p class="media-name">Stefan Bondy</p>
-            <p class="media-affil">New York Post</p>
+            <p class="media-name">Nick Wright</p>
+            <p class="media-affil">FS1</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="bondy">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="bondy">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="nick_wright">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="nick_wright">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.1463574973" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Nick Wright">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -657,32 +656,26 @@
         </div>
       </div>
 
-      <!-- Peter Botte -->
-      <div class="media-card" data-key="botte" data-avg="0" data-votes="0">
+      <!-- Skip Bayless -->
+      <div class="media-card">
         <div class="media-top">
-         <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/peter_botte.jpg" alt="Peter Botte" onerror="this.remove(); this.parentElement.textContent='PB';"></div>
+          <div class="avatar"><img src="images/media/skip_bayless.jpg" alt="Skip Bayless"></div>
           <div class="meta">
-            <p class="media-name">Peter Botte</p>
-            <p class="media-affil">New York Post</p>
+            <p class="media-name">Skip Bayless</p>
+            <p class="media-affil">FS1</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="botte">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="botte">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="skip_bayless">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="skip_bayless">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.1036744431" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Skip Bayless">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -695,32 +688,26 @@
         </div>
       </div>
 
-      <!-- James Edwards III -->
-      <div class="media-card" data-key="edwards" data-avg="0" data-votes="0">
+      <!-- Shannon Sharpe -->
+      <div class="media-card">
         <div class="media-top">
-         <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/james_edwards_iii.jpg" alt="James Edwards III" onerror="this.remove(); this.parentElement.textContent='JE';"></div>
+          <div class="avatar"><img src="images/media/shannon_sharpe.jpg" alt="Shannon Sharpe"></div>
           <div class="meta">
-            <p class="media-name">James Edwards III</p>
-            <p class="media-affil">The Athletic</p>
+            <p class="media-name">Shannon Sharpe</p>
+            <p class="media-affil">Nightcap / Independent</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="edwards">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="edwards">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="shannon_sharpe">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="shannon_sharpe">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.350331188" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Shannon Sharpe">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -733,32 +720,26 @@
         </div>
       </div>
 
-      <!-- Kristian Winfield -->
-      <div class="media-card" data-key="winfield" data-avg="0" data-votes="0">
+      <!-- Malika Andrews -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/kristian_winfield.jpg" alt="Kristian Winfield" onerror="this.remove(); this.parentElement.textContent='KW';"></div>
+          <div class="avatar"><img src="images/media/malika_andrews.jpg" alt="Malika Andrews"></div>
           <div class="meta">
-            <p class="media-name">Kristian Winfield</p>
-            <p class="media-affil">New York Daily News</p>
+            <p class="media-name">Malika Andrews</p>
+            <p class="media-affil">ESPN</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="winfield">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="winfield">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="malika_andrews">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="malika_andrews">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.48419644" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Malika Andrews">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -771,32 +752,26 @@
         </div>
       </div>
 
-      <!-- Mike Lupica -->
-      <div class="media-card" data-key="lupica" data-avg="0" data-votes="0">
+      <!-- Kendrick Perkins -->
+      <div class="media-card">
         <div class="media-top">
-          <div class="avatar">
-          <img src="https://kentav5.github.io/Knicks-Universe-Local-Media-Ratings/images/local/mike_lupica.jpg" alt="Mike Lupica" onerror="this.remove(); this.parentElement.textContent='ML';"></div>
+          <div class="avatar"><img src="images/media/kendrick_perkins.jpg" alt="Kendrick Perkins"></div>
           <div class="meta">
-            <p class="media-name">Mike Lupica</p>
-            <p class="media-affil">New York Daily News</p>
+            <p class="media-name">Kendrick Perkins</p>
+            <p class="media-affil">ESPN</p>
           </div>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="label">Avg Fan Score</div>
-            <div class="value" data-media-id="lupica">--</div>
-          </div>
-          <div class="stat">
-            <div class="label">Votes</div>
-            <div class="value" data-votes-id="lupica">0</div>
-          </div>
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="kendrick_perkins">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="kendrick_perkins">0</div></div>
         </div>
         <div class="divider"></div>
         <div class="rating-wrap">
           <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
           <form class="rating-form" method="POST" target="hidden_iframe"
-                action="https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse">
-            <input type="hidden" name="entry.594500527" value="" class="rating-input">
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfGxH9UA_sEKrJqPldkPFDP2CHoLlq4ZHb2UGKyPTao1AgaVg/formResponse">
+            <input type="hidden" name="entry.756421029" value="Kendrick Perkins">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
             <div class="pills">
               <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
               <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
@@ -812,263 +787,219 @@
     </div>
 
     <footer>
-      Live stats are calculated from your published Google Sheet (CSV). If you ever change the sheet publish URL, update <code>SHEET_CSV_URL</code>.
+      Tip: If you don’t see updates instantly, refresh the page. Live stats update every ~30 seconds.
     </footer>
-
   </div>
 
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
   <script>
-    // ====== CONFIG ======
-    const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfRGkT97wB7zQ4V2jlwnctsrQhtVYOYibBsYYDScwDhMPLenA/formResponse";
+    // =========================
+    // CONFIG
+    // =========================
+    const SUMMARY_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT2aSqel_NhRmHV-eEl7NkgNpk1tPYwen8cnH9ufyXduQpyuURiGfHTXCAi7Ke56p7paEX3G1brmdtw/pub?gid=2017545017&single=true&output=csv";
 
-    // Your published sheet (CSV)
-    const SHEET_CSV_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSpt9pH2cBh7uAiNZRiNeeMfcpr7EIAdidmzIUbwqrhOmYAM8LdQXMrSZHeGjP0msAWht4Dpm7Iwu1G/pub?output=csv";
-      // If needed (sometimes), use:
-      // "https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv";
+    const MEDIA_NAME_BY_ID = {
+      zach_lowe: "Zach Lowe",
+      stephen_a_smith: "Stephen A. Smith",
+      kevin_oconnor: "Kevin O'Connor (KOC)",
+      chris_vernon: "Chris Vernon",
+      amin_elhassan: "Amin Elhassan",
+      bomani_jones: "Bomani Jones",
+      nick_wright: "Nick Wright",
+      skip_bayless: "Skip Bayless",
+      shannon_sharpe: "Shannon Sharpe",
+      malika_andrews: "Malika Andrews",
+      kendrick_perkins: "Kendrick Perkins"
+    };
 
-    // Map Sheet column headers -> card keys (best case: headers match names)
-    // We also support "contains" matching to be tolerant.
-    const SHEET_HEADER_MATCH = [
-      { contains: "Begley", key: "begley" },
-      { contains: "Hahn", key: "hahn" },
-      { contains: "McNutt", key: "mcnutt" },
-      { contains: "Pidto", key: "pidto" },
-      { contains: "Wally", key: "wally" },
-      { contains: "Popper", key: "popper" },
-      { contains: "Bondy", key: "bondy" },
-      { contains: "Botte", key: "botte" },
-      { contains: "Winfield", key: "winfield" },
-      { contains: "Edwards", key: "edwards" },
-      { contains: "Lupica", key: "lupica" },
-    ];
+    // =========================
+    // CSV parsing
+    // =========================
+    function parseCsvLine(line) {
+      const result = [];
+      let cur = "";
+      let inQuotes = false;
 
-    // ====== UI: pills -> hidden input + enable submit ======
-    function initPillsAndForms(){
-      document.querySelectorAll(".rating-form").forEach(form => {
-        form.action = FORM_ACTION_URL;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === "," && !inQuotes) {
+          result.push(cur);
+          cur = "";
+        } else {
+          cur += ch;
+        }
+      }
+      result.push(cur);
+      return result.map(s => s.trim());
+    }
 
-        const input = form.querySelector(".rating-input");
-        const btn = form.querySelector(".submit-btn");
-        const status = form.querySelector(".submit-status");
-        const pills = Array.from(form.querySelectorAll(".rating-pill"));
+    // =========================
+    // Voting
+    // =========================
+    function initVoting() {
+      document.querySelectorAll(".media-card").forEach(card => {
+        const pills = card.querySelectorAll(".rating-pill");
+        const ratingInput = card.querySelector(".rating-input");
+        const submitBtn = card.querySelector(".submit-btn");
+        const statusEl = card.querySelector(".submit-status");
+        const form = card.querySelector("form");
 
-        pills.forEach(p => {
-          p.addEventListener("click", () => {
-            pills.forEach(x => x.classList.remove("selected"));
-            p.classList.add("selected");
+        if (!pills.length || !ratingInput || !submitBtn || !form) return;
 
-            // IMPORTANT: we submit just the number (10..1). This works with your averaging logic.
-            input.value = p.dataset.value;
+        pills.forEach(pill => {
+          pill.addEventListener("click", () => {
+            const v = pill.dataset.value;
+            ratingInput.value = v;
 
-            btn.disabled = false;
-            btn.classList.add("enabled");
-            if (status) status.textContent = "";
+            pills.forEach(p => p.classList.remove("selected"));
+            pill.classList.add("selected");
+
+            submitBtn.disabled = false;
+            if (statusEl) statusEl.textContent = "";
           });
         });
 
         form.addEventListener("submit", () => {
-          // show quick status; refresh sheet stats shortly after
-          if (status){
-            status.textContent = "Submitted ✓";
-            status.classList.remove("bad");
-            status.classList.add("ok");
-          }
-          btn.disabled = true;
-          btn.classList.remove("enabled");
-
-          setTimeout(() => {
-            if (status){
-              status.textContent = "";
-              status.classList.remove("ok");
-            }
-            pills.forEach(x => x.classList.remove("selected"));
-            input.value = "";
-          }, 1400);
-
-          setTimeout(loadAndRenderStats, 1800);
+          submitBtn.disabled = true;
+          if (statusEl) statusEl.textContent = "Vote submitted ✅";
+          setTimeout(fetchSummaryAndUpdateUI, 1500);
         });
       });
-
-      // initials styling
-      document.querySelectorAll(".avatar").forEach(a => {
-        const initials = a.getAttribute("data-initials") || a.textContent.trim();
-        a.textContent = initials;
-      });
     }
 
-    // ====== Stats from CSV ======
-    function parseCSV(text){
-      // Simple CSV parser that respects quotes
-      const rows = [];
-      let row = [];
-      let cur = "";
-      let inQuotes = false;
-
-      for (let i=0; i<text.length; i++){
-        const ch = text[i];
-        const next = text[i+1];
-
-        if (ch === '"' ){
-          if (inQuotes && next === '"'){ cur += '"'; i++; }
-          else inQuotes = !inQuotes;
-          continue;
-        }
-        if (ch === ',' && !inQuotes){
-          row.push(cur);
-          cur = "";
-          continue;
-        }
-        if ((ch === '\n' || ch === '\r') && !inQuotes){
-          if (ch === '\r' && next === '\n') i++;
-          row.push(cur);
-          cur = "";
-          rows.push(row);
-          row = [];
-          continue;
-        }
-        cur += ch;
-      }
-      // last cell
-      if (cur.length || row.length){
-        row.push(cur);
-        rows.push(row);
-      }
-      return rows;
-    }
-
-    function toNumber(val){
-      if (val == null) return NaN;
-      const s = String(val);
-      // Grab first number found (handles "10 – GOAT", "10", etc.)
-      const m = s.match(/(\d+(\.\d+)?)/);
-      return m ? Number(m[1]) : NaN;
-    }
-
-    function findKeyFromHeader(header){
-      const h = (header || "").toLowerCase();
-      for (const rule of SHEET_HEADER_MATCH){
-        if (h.includes(rule.contains.toLowerCase())) return rule.key;
-      }
-      return null;
-    }
-
-    function setCardStats(key, avg, votes){
-      const avgEl = document.querySelector(`[data-media-id="${key}"]`);
-      const votesEl = document.querySelector(`[data-votes-id="${key}"]`);
-      if (avgEl) avgEl.textContent = votes ? avg.toFixed(1) : "--";
-      if (votesEl) votesEl.textContent = String(votes || 0);
-
-      const card = document.querySelector(`.media-card[data-key="${key}"]`);
-      if (card){
-        card.dataset.avg = String(avg || 0);
-        card.dataset.votes = String(votes || 0);
-      }
-    }
-
-    async function loadAndRenderStats(){
-      try{
-        const resp = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-        const csvText = await resp.text();
-        const rows = parseCSV(csvText);
-
-        if (!rows || rows.length < 2) return;
-
-        const headers = rows[0];
-        const sums = {};
-        const counts = {};
-
-        // Start at row 1 (skip headers)
-        for (let r=1; r<rows.length; r++){
-          const cells = rows[r] || [];
-          for (let c=0; c<headers.length; c++){
-            const header = headers[c];
-            if (!header || header.trim().toLowerCase() === "timestamp") continue;
-
-            const key = findKeyFromHeader(header);
-            if (!key) continue;
-
-            const raw = cells[c];
-            if (!raw) continue;
-
-            const n = toNumber(raw);
-            if (Number.isNaN(n)) continue;
-
-            sums[key] = (sums[key] || 0) + n;
-            counts[key] = (counts[key] || 0) + 1;
-          }
-        }
-
-        // update all known keys
-        const keys = SHEET_HEADER_MATCH.map(x => x.key);
-        keys.forEach(key => {
-          const v = counts[key] || 0;
-          const avg = v ? (sums[key] / v) : 0;
-          setCardStats(key, avg, v);
-        });
-
-        // keep current sort
-        sortCards(currentSortMode);
-      }catch(e){
-        console.error("Local Media: stats load failed", e);
-      }
-    }
-
-    // ====== Sorting ======
-    let currentSortMode = "rating";
-
-    function nameForCard(card){
+    // =========================
+    // Sorting
+    // =========================
+    function getCardName(card) {
       const el = card.querySelector(".media-name");
-      return el ? el.textContent.trim() : "";
+      return (el ? el.textContent : "").trim().toLowerCase();
+    }
+    function getCardAvg(card) {
+      const el = card.querySelector("[data-media-id]");
+      const v = el ? Number(el.textContent) : NaN;
+      return Number.isFinite(v) ? v : -1;
+    }
+    function getCardVotes(card) {
+      const el = card.querySelector("[data-votes-id]");
+      const v = el ? Number(el.textContent) : NaN;
+      return Number.isFinite(v) ? v : 0;
     }
 
-    function sortCards(mode){
-      currentSortMode = mode;
+    function sortCards(mode) {
       const grid = document.getElementById("mediaGrid");
       if (!grid) return;
+
       const cards = Array.from(grid.querySelectorAll(".media-card"));
 
-      cards.sort((a,b) => {
-        const aAvg = parseFloat(a.dataset.avg || "0");
-        const bAvg = parseFloat(b.dataset.avg || "0");
-        const aVotes = parseInt(a.dataset.votes || "0", 10);
-        const bVotes = parseInt(b.dataset.votes || "0", 10);
-
-        if (mode === "votes"){
-          if (bVotes !== aVotes) return bVotes - aVotes;
-          if (bAvg !== aAvg) return bAvg - aAvg;
-          return nameForCard(a).localeCompare(nameForCard(b));
+      cards.sort((a, b) => {
+        if (mode === "votes") {
+          const dv = getCardVotes(b) - getCardVotes(a);
+          if (dv !== 0) return dv;
+          return getCardAvg(b) - getCardAvg(a);
         }
-        if (mode === "az"){
-          return nameForCard(a).localeCompare(nameForCard(b));
+        if (mode === "az") {
+          return getCardName(a).localeCompare(getCardName(b));
         }
-        // rating: avg desc, then votes desc
-        if (bAvg !== aAvg) return bAvg - aAvg;
-        if (bVotes !== aVotes) return bVotes - aVotes;
-        return nameForCard(a).localeCompare(nameForCard(b));
+        const dr = getCardAvg(b) - getCardAvg(a);
+        if (dr !== 0) return dr;
+        return getCardVotes(b) - getCardVotes(a);
       });
 
       cards.forEach(card => grid.appendChild(card));
     }
 
-    function initSortButtons(){
-      const btns = Array.from(document.querySelectorAll(".sortbtn"));
-      btns.forEach(btn => {
+    function initSorting() {
+      const buttons = document.querySelectorAll(".sortbtn");
+      if (!buttons.length) return;
+
+      buttons.forEach(btn => {
         btn.addEventListener("click", () => {
-          btns.forEach(b => b.classList.remove("active"));
+          buttons.forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
           sortCards(btn.dataset.sort);
         });
       });
+
+      sortCards("rating");
     }
 
-    // ====== Init ======
+    // =========================
+    // Fetch Summary + update UI
+    // =========================
+    async function fetchSummaryAndUpdateUI() {
+      if (!SUMMARY_CSV_URL || SUMMARY_CSV_URL.includes("PASTE_")) return;
+
+      const url = SUMMARY_CSV_URL + (SUMMARY_CSV_URL.includes("?") ? "&" : "?") + "v=" + Date.now();
+
+      let res;
+      try {
+        res = await fetch(url, { cache: "no-store" });
+      } catch (e) {
+        console.error("Failed to fetch CSV:", e);
+        return;
+      }
+      if (!res.ok) {
+        console.error("CSV fetch not OK:", res.status, res.statusText);
+        return;
+      }
+
+      const text = await res.text();
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (lines.length < 2) return;
+
+      const rows = lines.slice(1).map(parseCsvLine);
+
+      const byName = new Map();
+      for (const cols of rows) {
+        const name = cols[0];
+        const avg = cols[1];
+        const votes = cols[2];
+        if (name) byName.set(name, { avg, votes });
+      }
+
+      for (const [id, name] of Object.entries(MEDIA_NAME_BY_ID)) {
+        const scoreEl = document.querySelector(`[data-media-id="${id}"]`);
+        const votesEl = document.querySelector(`[data-votes-id="${id}"]`);
+        const rec = byName.get(name);
+
+        if (!rec) {
+          if (scoreEl) scoreEl.textContent = "--";
+          if (votesEl) votesEl.textContent = "0";
+          continue;
+        }
+
+        const avgNum = Number(rec.avg);
+        const votesNum = Number(rec.votes);
+
+        if (scoreEl) scoreEl.textContent = Number.isFinite(avgNum) ? avgNum.toFixed(1) : "--";
+        if (votesEl) votesEl.textContent = Number.isFinite(votesNum) ? String(votesNum) : "0";
+      }
+
+      const active = document.querySelector(".sortbtn.active");
+      sortCards(active ? active.dataset.sort : "rating");
+    }
+
+    // Boot
     document.addEventListener("DOMContentLoaded", () => {
-      initPillsAndForms();
-      initSortButtons();
-      loadAndRenderStats();
-      setInterval(loadAndRenderStats, 30000); // refresh every 30s
+      initVoting();
+      initSorting();
+      fetchSummaryAndUpdateUI();
+      setInterval(fetchSummaryAndUpdateUI, 30000);
     });
   </script>
 </body>
 </html>
+
+
+
+
+
+
