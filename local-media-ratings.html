@@ -719,6 +719,38 @@
         </div>
       </div>
 
+      <!-- Bill Pidto -->
+      <div class="media-card">
+        <div class="media-top">
+          <div class="avatar"><img src="images/local/bill_pidto.jpg" alt="Bill Pidto"></div>
+          <div class="meta">
+            <p class="media-name">Bill Pidto</p>
+            <p class="media-affil">MSG Network</p>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="label">Avg Fan Score</div><div class="value" data-media-id="bill_pidto">--</div></div>
+          <div class="stat"><div class="label">Votes</div><div class="value" data-votes-id="bill_pidto">0</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="rating-wrap">
+          <div class="rating-label">Choose a rating <span>10 = GOAT • 1 = Trash</span></div>
+          <form class="rating-form" method="POST" target="hidden_iframe"
+                action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfGMwlOaeN_cjPXGDOtGquzU9UN518Kva-kSCCVwTX1oSCsEw/formResponse">
+            <input type="hidden" name="entry.756421029" value="Bill Pidto">
+            <input type="hidden" name="entry.1446795869" value="" class="rating-input">
+            <div class="pills">
+              <div class="rating-pill" data-value="10">10</div><div class="rating-pill" data-value="9">9</div><div class="rating-pill" data-value="8">8</div><div class="rating-pill" data-value="7">7</div><div class="rating-pill" data-value="6">6</div>
+              <div class="rating-pill" data-value="5">5</div><div class="rating-pill" data-value="4">4</div><div class="rating-pill" data-value="3">3</div><div class="rating-pill" data-value="2">2</div><div class="rating-pill" data-value="1">1</div>
+            </div>
+            <div class="submit-row">
+              <button class="submit-btn" type="submit" disabled>Submit rating</button>
+              <div class="submit-status"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
 
     <footer>
@@ -732,7 +764,7 @@
     // =========================
     // CONFIG
     // =========================
-    const SUMMARY_CSV_URL = "PASTE_YOUR_LOCAL_MEDIA_SUMMARY_CSV_URL_HERE";
+    const SUMMARY_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRA4nqptj3YjQE5nvfBN7C4zoj4WhJ0WB8BFH_qyTZZDtyBelib6RPt1X9sm_t5yopeEwyCTPwC1vxS/pub?gid=1744954886&single=true&output=csv";
 
     const MEDIA_NAME_BY_ID = {
       ian_begley: "Ian Begley",
@@ -744,7 +776,8 @@
       monica_mcnutt: "Monica McNutt",
       james_edwards_iii: "James Edwards III",
       mike_lupica: "Mike Lupica",
-      stefan_bondy: "Stefan Bondy"
+      stefan_bondy: "Stefan Bondy",
+      bill_pidto: "Bill Pidto"
     };
 
     // =========================
