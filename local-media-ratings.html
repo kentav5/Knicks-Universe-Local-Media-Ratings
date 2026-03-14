@@ -372,8 +372,9 @@
         <div class="nav-title">Knicks Universe</div>
       </div>
       <div class="nav-links">
-        <a href="media-ratings.html">Media Ratings</a>
+        <a href="media-ratings.html">Mainstream Media</a>
         <a class="active" href="local-media-ratings.html">Local NYC Media</a>
+        <a href="https://kentav5.github.io/Knicks-Universe---Content-Creator-Ratings/content-creator-ratings.html" target="_blank" rel="noopener">Content Creators</a>
         <a href="https://kentav5.github.io/Knicks-Universe---Player-Polls/ratings.html" target="_blank" rel="noopener">Player Ratings</a>
       </div>
     </nav>
@@ -492,8 +493,6 @@
           </form>
         </div>
       </div>
-
-
 
       <!-- Kristian Winfield -->
       <div class="media-card">
@@ -754,7 +753,7 @@
     </div>
 
     <footer>
-      Tip: If you don't see updates instantly, refresh the page. Live stats update every ~30 seconds.
+      ✅ Live voting is active. Tip: If you don't see score updates instantly, refresh the page — stats update every ~30 seconds.
     </footer>
   </div>
 
@@ -825,10 +824,8 @@
           pill.addEventListener("click", () => {
             const v = pill.dataset.value;
             ratingInput.value = v;
-
             pills.forEach(p => p.classList.remove("selected"));
             pill.classList.add("selected");
-
             submitBtn.disabled = false;
             if (statusEl) statusEl.textContent = "";
           });
@@ -863,9 +860,7 @@
     function sortCards(mode) {
       const grid = document.getElementById("mediaGrid");
       if (!grid) return;
-
       const cards = Array.from(grid.querySelectorAll(".media-card"));
-
       cards.sort((a, b) => {
         if (mode === "votes") {
           const dv = getCardVotes(b) - getCardVotes(a);
@@ -879,14 +874,12 @@
         if (dr !== 0) return dr;
         return getCardVotes(b) - getCardVotes(a);
       });
-
       cards.forEach(card => grid.appendChild(card));
     }
 
     function initSorting() {
       const buttons = document.querySelectorAll(".sortbtn");
       if (!buttons.length) return;
-
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
           buttons.forEach(b => b.classList.remove("active"));
@@ -894,7 +887,6 @@
           sortCards(btn.dataset.sort);
         });
       });
-
       sortCards("rating");
     }
 
@@ -903,9 +895,7 @@
     // =========================
     async function fetchSummaryAndUpdateUI() {
       if (!SUMMARY_CSV_URL || SUMMARY_CSV_URL.includes("PASTE_")) return;
-
       const url = SUMMARY_CSV_URL + (SUMMARY_CSV_URL.includes("?") ? "&" : "?") + "v=" + Date.now();
-
       let res;
       try {
         res = await fetch(url, { cache: "no-store" });
@@ -917,13 +907,10 @@
         console.error("CSV fetch not OK:", res.status, res.statusText);
         return;
       }
-
       const text = await res.text();
       const lines = text.split(/\r?\n/).filter(Boolean);
       if (lines.length < 2) return;
-
       const rows = lines.slice(1).map(parseCsvLine);
-
       const byName = new Map();
       for (const cols of rows) {
         const name = cols[0];
@@ -931,25 +918,20 @@
         const votes = cols[2];
         if (name) byName.set(name, { avg, votes });
       }
-
       for (const [id, name] of Object.entries(MEDIA_NAME_BY_ID)) {
         const scoreEl = document.querySelector(`[data-media-id="${id}"]`);
         const votesEl = document.querySelector(`[data-votes-id="${id}"]`);
         const rec = byName.get(name);
-
         if (!rec) {
           if (scoreEl) scoreEl.textContent = "--";
           if (votesEl) votesEl.textContent = "0";
           continue;
         }
-
         const avgNum = Number(rec.avg);
         const votesNum = Number(rec.votes);
-
         if (scoreEl) scoreEl.textContent = Number.isFinite(avgNum) ? avgNum.toFixed(1) : "--";
         if (votesEl) votesEl.textContent = Number.isFinite(votesNum) ? String(votesNum) : "0";
       }
-
       const active = document.querySelector(".sortbtn.active");
       sortCards(active ? active.dataset.sort : "rating");
     }
